@@ -93,26 +93,33 @@ In this paper we provide an alternative proof for the description.
 Stable Matching\sep Polytope\sep Extreme Points
 \end{keyword}
 \end{frontmatter}
+{\color{red}
+\section*{TODO}
+\begin{enumerate}
+	\item itroduction
+	\item formulate the idea of the proofs by Rothblum and van Vate
+	\item citation for structure of symmetric difference, adjacencies in the stable matching polytope
+	\item pictures
+\end{enumerate}
+}
 \section{Stable Matching Polytope}
 
 Let $G = (V, E)$ be a bipartite graph  where the bipartition is given by node sets $\mathcal{A}$ and $\mathcal{B}$. Moreover, each node $a\in\mathcal{A}$ defines a total ordering $>_a$ on its neighbour nodes $N(a):=\{b \in\mathcal{B}: \{a,b\}\in E\}$;  the same holds for nodes in $\mathcal{B}$.
 
-Let us introduce the following notation. For $a\in \mathcal{A}$ and $u \in N(\mathcal{A})$, we can define $\delta^{>b}(a):=\{ \{a,\beta\}\in E: \beta>_a b \}$. We can define $\delta^{>a}(b)$, $\delta^{\leq b}(a)$, $\delta^{\geq b}(a)$, etc, similarly. For $a\in \mathcal{A}$ let $N_{\max}(a)$ denote the maximum element in $N(a)$ with respect to $>_a$, analogously define $N_{\max}(b)$ for $b\in\mathcal{B}$. 
+Let us introduce the following notation. For $a\in \mathcal{A}$ and $b \in N(\mathcal{A})$, we can define $\delta^{>b}(a):=\{ \{a,\beta\}\in E: \beta>_a b \}$. Similarly we can define $\delta^{>a}(b)$, $\delta^{\leq b}(a)$, $\delta^{\geq b}(a)$, etc. For $a\in \mathcal{A}$ let $N_{\max}(a)$ denote the maximum element in $N(a)$ with respect to $>_a$, analogously define $N_{\min}(a)$ and $N_{\max}(b)$, $N_{\min}(b)$ for $b\in\mathcal{B}$. 
 
-Given a matching $M$ and $v\in V$, we define $M(v)$ as a neighbour of $v$ in $M$ if $v$ is matched by $M$, otherwise $M(v):=\varnothing$. To simplify notation we understand $>_v$, $v\in V$ as a total ordering on the set $N(v)\cup\{\varnothing\}$, where $\varnothing$ is the smallest element with respect to $>_v$
-A matching $M$ in $G$ is called a $\emph{stable matching}$ if for every edge $e=\{a,b\}\in E$ the set
+Given a matching $M$ and $v\in V$, we define $M(v)$ as a neighbour of $v$ in $M$ if $v$ is matched by $M$, otherwise $M(v):=\varnothing$. To simplify notation we understand $>_v$, $v\in V$ as a total ordering on the set $N(v)\cup\{\varnothing\}$, where $\varnothing$ is the smallest element with respect to $>_v$.
+A matching $M$ in $G$ is called a $\emph{stable matching}$ if for every edge $e=\{a,b\}\in E$ we have
 \begin{equation}\label{eq:stability_def}
 		M \, \cap \, \big(\delta^{>a}(b) \cup \delta^{>b}(a) \cup  \{e\} \big)\neq\varnothing\,,
 \end{equation}
 i.e. no edge $\{a,b\}\in E$ is absent in $M$  if $a>_b M(b)$ and $b>_a M(a)$.
 
 
-%If we assign for each vertex a list of preferences with respect to that vertex's neighbours then we have a stable matching instance. Let $v,w \in V$, define $\delta^{>w}(v) = \{vj \in \delta(v): j \text{ is strictly preferred to } w \text{ by } v\}$. Also define $ \delta^{\geq w}(v), \delta^{<w}(v),$ etc, similarly. Let $n^*(v)$ ($n_*(v)$ respectively) denote the most (least respectively) preferred elements of the neighbourhood of $v$. For any matching $M$ let $M(v)$ denote the vertex such that $vM(v) \in M$. Let $M_1$ and $M_2$ be two stable matchings on $G$.
-
-Next lemmas study $M_1\triangle M_2:=\{ e\in E: |M_1\cap \{e\}|+|M_2\cap \{e\}|=1\}$. Further in the paper, we denote by $V(C)$ and $E(C)$ the node and edge sets of a graph $C$.
+Next lemmas study connected components of $M_1\triangle M_2:=\{ e\in E: |M_1\cap \{e\}|+|M_2\cap \{e\}|=1\}$ for stable matchings $M_1$, $M_2$ in $G$. Here, $V(C)$ and $E(C)$ denote the node and edge sets of a graph $C$.
 
 \begin{lemma}\label{lemma:pref}
-Let $M_1$ and $M_2$ be two stable matchings in $G$ and let $C$ be a connected component in the graph $M_1 \triangle M_2$. Then either
+Let $M_1$ and $M_2$ be two stable matchings in $G$ and let $C$ be a connected component in $M_1 \triangle M_2$. Then, either
 \begin{equation}\label{eq:pref_first}
 	M_1(a)>_a M_2(a)\,,\,\forall a\in V(C) \cap\mathcal{A}\quad \text{and} \quad  M_1(b)<_b M_2(b)\,,\,  \forall b\in V(C) \cap\mathcal{B}
 \end{equation}
@@ -121,15 +128,12 @@ or
 	M_2(a)>_a M_1(a)\,,\,\forall a\in V(C) \cap\mathcal{A}\quad \text{and} \quad  M_2(b)<_b M_1(b)\,,\,  \forall b\in V(C) \cap\mathcal{B}
 \end{equation}
 \end{lemma}
-%Let $C$ be a connected component of the subgraph of $G$ with edge set $M_1 \triangle M_2$. Then either all vertices in $V(C) \cap V_0$ prefer $M_1$ to $M_2$ and all vertices in $V(C) \cap V_1$ prefer $M_2$ to $M_1$, or vice versa.
 
 
 \begin{proof}
 Since $M_1$ and $M_2$ are matchings, $C$ is a path or a cycle. Let $v\in V$ be an end node of $C$ if $C$ is a path, otherwise let $v$ be an arbitrary node of $C$. 
 
-W.l.o.g. $v:=a\in \mathcal{A}$, $M_1(a) >_a M_2(a)$ and $b:=M_1(a)\in\mathcal{B}$. If $a=M_1(b) >_b M_2(b)$, the matching $M_2$ violates~\eqref{eq:stability_def} for the edge $\{a,b\}\in E$. Thus, $a=M_1(b) <_b M_2(b)$ and continuing in this way, we obtain statement~\eqref{eq:pref_first}.
-
-%We may assume without loss of generality that $v \in V_0$ and $M_1(v) >_v M_2(v)$. Let $w = M_1(v)$. Then $w \in V(C)$. If $M_1(w) >_w M_2(w)$ then $vw$ blocks $M_2$. So $M_2(w) >_w M_1(w)$. Let $u=M_2(w)$. Then $u \in V(C)$. If $M_2(u) >_u M_1(u)$ then $uw$ blocks $M_1$. So $M_1(u) >_u M_2(u)$. This local structure can be extended forward to hit all edges in the connected component.
+W.l.o.g. $v:=a\in \mathcal{A}$, $M_1(a) >_a M_2(a)$ and $b:=M_1(a)\in\mathcal{B}$. If $a=M_1(b) >_b M_2(b)$, the matching $M_2$ violates~\eqref{eq:stability_def} for the edge $\{a,b\}\in E$. Thus, $a=M_1(b) <_b M_2(b)$. Thus, $M_2(b)\neq \varnothing$ and the matching $M_1$ satisfies~\eqref{eq:stability_def} for the edge $e:=\{b,M_2(b)\}\in E$ only if $M_1(M_2(b))>_{M_2(b)} b$. Continuing in this way, we obtain statement~\eqref{eq:pref_first}.
 \end{proof}
 
 
@@ -155,12 +159,21 @@ By~\cite{}, $P(G)$ is a nonempty polytope because every graph $G$ has a stable m
 
 Clearly, the vertices of $P(G)$ are in one to one correspondence with stable matchings in $G$. Moreover, Lemma~\ref{lemma:sym_stable} helps to understand what pairs of stable matchings in $G$ do not correspond to edges of $P(G)$.
 
-\begin{lemma}
+\begin{lemma}\label{lemma:edge}
 Let $M_1$ and $M_2$ be two stable matchings in $G$ which define an edge of the polytope~$P(G)$. Then all connected components in $M_1\triangle M_2$ satisfy~\eqref{eq:pref_first} or all of them satisfy~\eqref{eq:pref_second}.  
 \end{lemma}
 \begin{proof}
 If the statement of the lemma does not hold, then in Lemma~\ref{lemma:sym_stable} the sets $J_1$ and $J_2$ are both nonempty, and hence we obtain two stable matchings $M_1\triangle J_1$ and $M_1\triangle J_2$ different from $M_1$, $M_2$ such that $\frac{1}{2}\chi(M_1\triangle J_1)+\frac{1}{2}\chi(M_1\triangle J_2)=\frac{1}{2}\chi(M_1)+\frac{1}{2}\chi(M_2)$, what condradicts the statement that $M_1$ and $M_2$ define an edge of $P(G)$.
 \end{proof}
+
+
+\begin{corollary}\label{cor:edge}
+Let $M_1$ and $M_2$ be two stable matchings in $G$ such that
+$$
+	M_1\cap\delta^{>a}(b)\neq\varnothing, M_1\cap\delta^{>b}(a)\neq\varnothing\quad\text{and}\quad M_2\cap\big(\delta^{>a}(b)\cup \delta^{>b}(a)\big)=\varnothing 
+$$
+ for some $a\in\mathcal{A}$ and $b\in\mathcal{B}$. Then, $M_1$ and $M_2$ do not define an edge of the polytope~$P(G)$.
+\end{corollary}
 
 
 \section{Linear Description}
@@ -184,95 +197,29 @@ Clearly, $P(G)\subseteq Q(G)$ because for every stable matching $M$ in $G$ the p
 \begin{proof}
 First, let show that every vertex $x$ of $Q(G)$ has a coordinate equal to $0$ or a coordinate equal to $1$. Let us assume the contrary. As every vertex, $x\in \R^E$ is defined as the unique point, which tightly satisfies some $|E|$ constraints describing $Q(G)$. Since $x$ has no zero coordinate, we can assume  that the tight constraints are $x(\delta(v))\le 1$ for $v\in V_x$ and \eqref{eq:lin_descr_stab} for $e\in E_x$, where $|V_x|+|E_x|=|E|$. Moreover, let us assume that we choose the $|E|$ tight constraints so that $|V_x|$ is as large as possible. 
 
-The constraints $x(\delta(v))=1$, $v\in V$ are linearly dependent, in particular $\sum_{a\in\mathcal{A}}\chi(\delta(a))=\sum_{b\in\mathcal{B}}\chi(\delta(b))$. Hence, we have $|V_x|\le |V|-1$. {\color{red}On the other hand if $a=N_{\max}(b)$ or $a=N_{\min}(b)$ then $\{a,b\}\not\in E_x$. Indeed, if $N_{\max}(b)$ the tight constraint~\eqref{eq:lin_descr_stab} for $e:=\{a,b\}$  is... deduced from constraints $x(\delta(a))\le 1$, which is also tight for the point $x$.} Thus, 
+The constraints $x(\delta(v))=1$, $v\in V$ are linearly dependent, in particular $\sum_{a\in\mathcal{A}}\chi(\delta(a))=\sum_{b\in\mathcal{B}}\chi(\delta(b))$. Hence, we have $V_x\subsetneq V$. On the other hand if $a=N_{\max}(b)$ or $a=N_{\min}(b)$ then $e:=\{a,b\}\not\in E_x$. Indeed, $a=N_{\max}(b)$ implies $\delta^{>a}(b)=\varnothing$ then
 $$
-	|E_x|=\frac{1}{2}\sum_{v\in V} |\delta(v)\cap E_x|\le  \frac{1}{2}\sum_{v\in V} (|\delta(v)|-2)= |E|-|V|\,,
+	1\le x(\delta^{>a}(b))+ x(\delta^{>b}(a)) + x_{\{a,b\}}=x(\delta^{\ge b}(a)) \le x(\delta(a)) \le 1\,,
 $$
-what implies $|E_x|+|V_x|\le |E|-1$, contradiction.
+showing that $\delta^{< b}(a)=\varnothing$ and hence $E_x\setminus e$, $V_x\cup \{a\}$ also define the vertex $x$. The case $a=N_{\min}(b)$ is analogous. Moreover, notice that $N_{\min}(v)\neq N_{\max}(v)$ for $v\in V_x$ since no coordinate of $x$ equals $1$.Thus, 
+\begin{multline*}
+	|E_x|=\frac{1}{2}\sum_{v\in V} |\delta(v)\cap E_x|\le \frac{1}{2}\sum_{v\in V_x} (|\delta(v)|-2)+\\\frac{1}{2}\sum_{v\in V\setminus V_x} (|\delta(v)|-2)= |E|-|V_x|-\frac{1}{2}|V\setminus V_x|\,,
+\end{multline*}
+what implies $|E_x|+|V_x|< |E|$, contradiction.
 
 \bigskip
 
-Now let us assume that $G$ is a graph with the minimum number of edges such that $Q(G)$ is not an integral polytope.
+Now let us assume that $G$ is a graph with the minimum number of edges such that $Q(G)$ is not an integral polytope. Let $x$ be a nonintegral vertex of $Q(G)$.
 
 Case $x_{\{a,b\}}=0$ for some $a\in \mathcal{A}$, $b\in\mathcal{B}$ and $e:=\{a,b\}\in E$. In this case, let $x'$ be obtained from $x$ by dropping the coordinate corresponding to $\{a,b\}$, and let $G'$ be the graph with $V(G')=V$ and $E(G')\setminus \{e\}$. Define $H'$ to be the hyperplane $\{x\in \R^{E(G')}: x(\delta^{>a}(b))+ x(\delta^{>b}(a))=1\}$. Then, $x'$ is a vertex of the polytope $P':=P(G')\cap H'$.
-But every vertex of $P'$ is either a vertex of $P(G')$ or an intersection of an edge of $P(G')$ with the hyperplane $H'$.{\color{red}no such edg}
+But every vertex of $P'$ is either a vertex of $P(G')$ or an intersection of an edge of $P(G')$ with the hyperplane $H'$. Since by Corollary~\ref{cor:edge} there is no edge of $P(G')$ intersecting the hyperplane $H'$, $x'$ is a vertex of $P(G')$. By minimality of $G$, both $x'$ and $x$ are integral, contradiction.
 
-Case $x_{\{a,b\}}=1$ for some $a\in \mathcal{A}$, $b\in\mathcal{B}$. {\color{red}vertex of a new polytope}
+Case $x_{\{a,b\}}=1$ for some $a\in \mathcal{A}$, $b\in\mathcal{B}$. Let $x'$ be obtained by dropping the coordinates corresponding to $\delta(a)\cup\delta(b)$, and let $G'$ be the graph with $V(G')=V\setminus\{a,b\}$ and $E(G')\setminus \big(\delta(a)\cup\delta(b)\big)$. It is straightforward to see that $x'$ is a vertex of $P(G')$. Thus by minimality of $G$, both $x'$ and $x$ are integral, contradiction. 
 \end{proof}
 
-\newpage
-
-\subsection{Finding a $0$ or $1$}
-
-\begin{lemma}
-Let $x$ be an extreme point solution to $Q(G)$ such that $x>0$. Then there exists $W \subseteq V$ and $T \subseteq E$ such that the following hold:
-\label{lemma:rank}
-\begin{enumerate}
-\item $x(\delta(v)) = 1$, $\forall v \in W$.
-\item $x(\delta^{>w}(v)) + x(\delta^{>v}(w)) + x_{vw} = 1$, $\forall vw \in T$.
-\item The vectors in $\{\chi(\delta(v)) : v \in W\}$ together with the vectors in $\{\chi(\delta^{>w}(v)) + \chi(\delta^{>v}(w)) + \chi(vw) : vw \in T\}$ are all linearly independent.
-\item $|W| + |T| = |E|$.
-\end{enumerate}
-\end{lemma}
-\begin{proof}
-Immediate from Rank Lemma \cite{lau2011iterative}. 
-\end{proof}
-\begin{lemma}
-Let $x$ be an extreme point solution of $Q(G)$ such that $0 < x < 1$. Let $W \subseteq V$, and $T \subseteq E$ be sets that together satisfy $1-4$ of Lemma \ref{lemma:rank}. If $W$ and $T$ are chosen so that $|W|$ is maximized then for any $v \in V$ if $w = n^*(v)$ then $vw \not\in T$.
-\label{lemma:fav}
-\end{lemma}
-\begin{proof}
-Let $v \in V$, let $w = n^*(v)$ and suppose for a contradiction that $vw \in T$. Then 
-$$x(\delta^{>v}(w)) + x(\delta^{>w}(v)) + x_{vw} = 1. $$
-Since $w = n^*(v)$, $\chi(\delta^{>w}(v)) = 0$. Therefore we have
-$$x(\delta^{\geq v}(w)) = 1.$$
-Since $x(\delta(w)) \leq 1$ and $\delta(w) = \delta^{\geq v}(w) \dot\cup \delta^{< v}(w)$, $$x(\delta^{<v}(w) = 0. $$
-Therefore, since $x_e > 0$ for each $e \in \delta^{< v}(w)$, $$\chi(\delta^{< v}(w)) = 0.$$
-Then we have that
-\begin{align*}
-\chi(\delta(w)) &= \chi(\delta^{\geq v}(w)) + \chi(\delta^{<v}(w)) \\
-&= \chi(\delta^{\geq v}(w)) \\
-&= \chi(\delta^{> v}(w)) + \chi(\delta^{> w}(v)) + \chi(vw).
-\end{align*}
-So if $w \in W$ this contradicts condition $3$ of Lemma \ref{lemma:rank}, the linear independence. But if $w \not\in W$ then by the equivalence just demonstrated the sets $W' = W \cup \{w\}$ and $T' = T \backslash \{vw\}$ also satisfy $1-4$ of Lemma \ref{lemma:rank} yet $|W'| > |W|$ contradicting the maximality of $|W|$. 
-\end{proof}
-\begin{lemma}
-Let $x$ be an extreme point solution of $Q(G)$. Then there exists $e \in E$ such that $x_e = 0$ or $x_e = 1$.
-\label{lemma:01}
-\end{lemma}
-\begin{proof}
-Suppose for contradiction that $0 < x_e < 1$ for all $e \in E$. By Lemma \ref{lemma:rank} there exists $W, T$ satisfying properties $1-4$ of Lemma \ref{lemma:rank}. Choose such $W$ and $T$ so that $|W|$ is maximized. First notice that
-$$d_E(v) \geq 2 $$
-for all $v \in W$. This follows since $x(\delta(v)) = 1$ and $x_e < 1$ for each $e \in \delta(v)$.
-\paragraph{}
-Let $v \in W$. Let $w = n_*(v)$. We claim that $vw \not\in T$. Suppose for a contradiction that $vw \in T$. Then we would have:
-$$  x(\delta^{>w}(v)) + x(\delta^{>v}(w)) + x_{vw} = 1. $$
-But since $w=n_*(v)$, $\chi(\delta^{<w}(v)) = 0$. Thus $\delta^{\geq w}(v) = \delta(v)$. Therefore
-$$x(\delta^{>w}(v)) + x_{vw} = x(\delta(v)) = 1 \text{ since $v \in W$}. $$
-So we have that $ x(\delta^{>v}(w)) = 0 $. That is $\chi(\delta^{>v}(w)) = 0.$
-Therefore $$ \chi(\delta^{>w}(v)) + \chi(\delta^{>v}(w)) + \chi(vw) = \chi(\delta^{>w}(v)) + \chi(vw) = \chi(\delta(v)). $$
-Since $v \in W$ this tells us that condition $3$ of Lemma \ref{lemma:rank} is violated, a contradiction. Therefore $vw \not\in T$.
-\paragraph{}
-Now for any $v \in V$, by Lemma \ref{lemma:fav}, $vn^*(v) \not\in T$. Since $d_E(v) \geq 2$ implies that $n^*(v) \neq n_*(v)$ we thus have that $d_{E\backslash T}(v) \geq 2$ for all $v \in W$.
-\paragraph{}
-We are now ready to give a fractional token counting argument to obtain the desired contradiction. To each $e \in E$ we will distribute one token. Redistribute the tokens according to the following rules. For any $e=vw \in E$ do:
-\begin{enumerate}
-\item If $e \in T$ then $e$ keeps its token,
-\item otherwise:
-\subitem if $v \in W$ then $e$ gives $\frac{1}{2}$ token to $v$,
-\subitem if $w \in W$ then $e$ give $\frac{1}{2}$ token to $w$.
-\end{enumerate}
-Then after redistribution by rule $1$ every $e \in T$ has a token. Let $v \in W$. By our previous arguments $d_{E\backslash T}(v) \geq 2$. So there exist at least two edges which each give $\frac{1}{2}$ token to $v$. Therefore $v$ has at least one token after redistribution.
-\paragraph{}
-We claim that there exist $v \in V\backslash W$. Suppose not, that is $W = V = V_0 \dot\cup V_1$. Then
-\begin{align*}
-\sum_{v \in V_0} \chi(\delta(v)) &= \chi(\delta(V_0)) \\
-&= \chi(\delta(V_1)) &\text{since $G$ is bipartite} \\
-&= \sum_{v \in V_1} \chi(\delta(v)).
-\end{align*}
-Since $V_0, V_1 \subseteq W$ this contradicts Lemma \ref{lemma:rank} part $3$. Therefore there exists $v \in V \backslash W$. Let $w = n^*(v)$. Let $e = vw \in E$. By Lemma \ref{lemma:rank}, $e \not \in T$. Since $v \not\in W$, $e$ keeps at least $\frac{1}{2}$ token. Therefore $|E| > |W| + |T|$ contradicting condition $4$ of Lemma \ref{lemma:rank}. 
-\end{proof}
-
+<<<<<<< HEAD
+%\bibliography{StableMatchingPolytopeReferences}
+=======
 \subsection{Proof of Integrality}
 \begin{theorem}
 $Q(G)$ is integral.
@@ -309,4 +256,5 @@ In the case $x_e = 1$, if there exists $e' \in \delta(v) \cup \delta(w) \backsla
 \end{proof}
 \bibliographystyle{alpha}
 \bibliography{StableMatchingPolytopeReferences}
+>>>>>>> 43ddd9458e319e07569dbe1de87ab68dbcdcaed8
 \end{document}
