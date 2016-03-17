@@ -108,10 +108,8 @@ i.e. no edge $\{a,b\}\in E$ is absent in $M$  if $a>_b M(b)$ and $b>_a M(a)$.
 
 
 %If we assign for each vertex a list of preferences with respect to that vertex's neighbours then we have a stable matching instance. Let $v,w \in V$, define $\delta^{>w}(v) = \{vj \in \delta(v): j \text{ is strictly preferred to } w \text{ by } v\}$. Also define $ \delta^{\geq w}(v), \delta^{<w}(v),$ etc, similarly. Let $n^*(v)$ ($n_*(v)$ respectively) denote the most (least respectively) preferred elements of the neighbourhood of $v$. For any matching $M$ let $M(v)$ denote the vertex such that $vM(v) \in M$. Let $M_1$ and $M_2$ be two stable matchings on $G$.
-{\color{red}
-Next lemmas turn out to be useful to study $M_1\triangle M_2:=\{ e\in E: \}$
 
-Here, we denote by $V(C)$ and $E(C)$ the node and edge sets of $C$.}
+Next lemmas study $M_1\triangle M_2:=\{ e\in E: |M_1\cap \{e\}|+|M_2\cap \{e\}|=1\}$. Further in the paper, we denote by $V(C)$ and $E(C)$ the node and edge sets of a graph $C$.
 
 \begin{lemma}\label{lemma:pref}
 Let $M_1$ and $M_2$ be two stable matchings in $G$ and let $C$ be a connected component in the graph $M_1 \triangle M_2$. Then either
@@ -144,13 +142,7 @@ By Lemma~\ref{lemma:pref}, $J_2$ is the union of $E(C)$ for connected components
 Clearly $M'_1:=M_1\triangle J_1$ and $M'_2:=M_1\triangle J_2$ are matchings in $G$. Let us assume that one of these matchings os not stable, w.l.o.g. assume that $M'_1$ does not satisfy~\eqref{eq:stability_def} for some edge $e:=\{a,b\}\in E$ with $a\in\mathcal{A}$ and $b\in\mathcal{B}$. 
 
 Since $M_1$ and $M_2$ are stable, we have $|\{a,b\}\cap V(J_1)|=1$ and $|\{a,b\}\cap V(J_2)|=1$.
-If $a\in V(J_1)$ and $b\in V(J_2)$, then $M'_1(a)=M_2(a)$ and $M'_1(b)>M_2(b)$, and hence $M_2$ violates ~\eqref{eq:stability_def} for $e:=\{a,b\}$.{\color{red} If $a\in V(J_2)$ and $b\in V(J_1)$, then $M'_1(a)=M_2(a)$ and $M'_1(b)>M_2(b)$
-
-
-
-
-
-}
+If $a\in V(J_1)$ and $b\in V(J_2)$, then $M'_1(a)=M_2(a)$ and $M'_1(b)>_b M_2(b)$, and hence $M_2$ violates~\eqref{eq:stability_def} for $e:=\{a,b\}$. If $a\in V(J_2)$ and $b\in V(J_1)$, then $M'_1(a)=M_1(a)$ and $M'_1(b)>_b M_1(b)$, and hence $M_1$ violates~\eqref{eq:stability_def} for $e:=\{a,b\}$, contradiction.
 \end{proof}
 
 \section{Stable Matching Polytope}
