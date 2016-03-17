@@ -217,44 +217,7 @@ But every vertex of $P'$ is either a vertex of $P(G')$ or an intersection of an 
 Case $x_{\{a,b\}}=1$ for some $a\in \mathcal{A}$, $b\in\mathcal{B}$. Let $x'$ be obtained by dropping the coordinates corresponding to $\delta(a)\cup\delta(b)$, and let $G'$ be the graph with $V(G')=V\setminus\{a,b\}$ and $E(G')\setminus \big(\delta(a)\cup\delta(b)\big)$. It is straightforward to see that $x'$ is a vertex of $P(G')$. Thus by minimality of $G$, both $x'$ and $x$ are integral, contradiction. 
 \end{proof}
 
-<<<<<<< HEAD
-%\bibliography{StableMatchingPolytopeReferences}
-=======
-\subsection{Proof of Integrality}
-\begin{theorem}
-$Q(G)$ is integral.
-\end{theorem}
-\begin{proof}
-Note that it is clear the integral points of $Q(G)$ describe stable matchings of $G$\cite{rothblum1992characterization}. The argument proceeds by induction on $|E|$. Notice in the base case $|E| = 1$, it is immediate that $Q(G) = \{1\}$.
-\paragraph{}
-Consider the inductive case. Let $x$ be an extreme point of $Q(G)$. By Lemma \ref{lemma:01} exists $e=vw \in E(G)$ such that $x_e = 0$ or $x_e = 1$. 
-\paragraph{}
-Consider the case $x_e = 0$. If $x$ is fractional then the residual vector, $z$, acquired by restricting $x$ to $\R^{E\backslash\{e\}}$, is fractional. Notice that $z \in Q(G-e)$. Further it is not difficult to show that $x$ satisfies:
-$$x(\delta^{>w}(v))+ x(\delta^{>v}(w)) + x_{vw} = 1$$
-and so $z$ lies on an edge of $Q(G-e)$ (the hyperplane above intersects this edge) . Let $M_1$ and $M_2$ be the stable matchings given by the extreme points of $Q(G-e)$ which describe the edge that $z$ lies on.
-\paragraph{}
-Without loss of generality we may assume
-$$ |M_1 \cap(\delta^{>w}(v) \cup \delta^{>v}(w))| = 2 $$
-and 
-$$ |M_2 \cap(\{vw\} \cup \delta^{>w}(v) \cup \delta^{>v}(w))| = 0.$$
-To see this notice that if $|M_1 \cap(\delta^{>w}(v) \cup \delta^{>v}(w))| = 1$ then $M_1$ would satisfy $$x(\delta^{>w}(v))+ x(\delta^{>v}(w)) + x_{vw} = 1$$ and $z$ would be the incidence vector of $M_1$, contradicting that $z$ is fractional. Similar for $M_2$.
-\paragraph{}
-Define $J_1$ and $J_2$ as in Lemma \ref{lemma:symstable}. Since $|M_1 \cap(\delta^{>w}(v) \cup \delta^{>v}(w))| = 2$, neither $J_1$ nor $J_2$ are empty. Therefore $M_1 \triangle J_1$ and $M_2 \triangle J_2$ are distinct matchings from $M_1$ and $M_2$.
-\paragraph{}
-Further it can be seen that
-\begin{align*}
-&\chi(M_1 \triangle J_1) + \chi(M_1 \triangle J_2)\\
-&= (\chi(M_1) + \chi(J_1) - 2\chi(M_1 \cap J_1)) + (\chi(M_1) + \chi(J_2) -2\chi(M_1 \cap J_2))\\
-&=2\chi(M_1) + \chi(J_1) + \chi(J_2) -2(\chi(M_1 \cap J_1) + \chi(M_2 \cap J_2)) \\
-&= 2\chi(M_1) + \chi(M_1 \triangle M_2) - 2(\chi(M_1) + \chi(M_1 \cap M_2)) \\
-&= \chi(M_1 \triangle M_2) + 2\chi(M_1 \cap M_2) \\
-&=\chi(M_1) + \chi(M_2).
-\end{align*}
-\paragraph{}By Lemma \ref{lemma:symstable}, $M_1 \triangle J_1$ and $M_1 \triangle J_2$ are stable. This contradicts that $M_1$ and $M_2$ are described by extreme points defining at edge of $Q(G-e)$.
-\paragraph{}
-In the case $x_e = 1$, if there exists $e' \in \delta(v) \cup \delta(w) \backslash \{e\}$ then $x_{e'} = 0$ and so we may obtain a contradiction by removing $e'$ as we did in the $x_e = 0$ case. Otherwise let $z$ be the vector acquired by restricting $x$ to $\R^{E \backslash \{e\}}$. Notice $z \in Q(G - v - w)$. If $z$ is not a vertex then there exists $z^1, z^2 \in Q(G-v-w)$ such that $z = \frac{1}{2}(z^1 + z^2)$. Now $z^1,z^2$ can be extended to vectors $x^1, x^2 \in \R^{E}$ by setting $x^1_e=x^2_e = 1$. Then $x^1,x^2 \in Q(G)$ and $x = \frac{1}{2}(x^1 + x^2)$, contradicting that $x$ is a vertex of $Q(G)$. Therefore $z$ is a vertex of $Q(G-v-w)$, thus integral, and so $x$ is integral.
-\end{proof}
+
 \bibliographystyle{alpha}
 \bibliography{StableMatchingPolytopeReferences}
->>>>>>> 43ddd9458e319e07569dbe1de87ab68dbcdcaed8
 \end{document}
