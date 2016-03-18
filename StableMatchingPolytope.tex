@@ -100,6 +100,7 @@ Stable Matching\sep Polytope\sep Extreme Points
 	\item formulate the idea of the proofs by Rothblum and van Vate
 	\item citation for structure of symmetric difference, adjacencies in the stable matching polytope
 	\item pictures
+	\item expand some explanations or make them clearer, if necessary
 \end{enumerate}
 }
 \section{Stable Matching Polytope}
@@ -133,7 +134,7 @@ or
 \begin{proof}
 Since $M_1$ and $M_2$ are matchings, $C$ is a path or a cycle. Let $v\in V$ be an end node of $C$ if $C$ is a path, otherwise let $v$ be an arbitrary node of $C$. 
 
-W.l.o.g. $v:=a\in \mathcal{A}$, $M_1(a) >_a M_2(a)$ and $b:=M_1(a)\in\mathcal{B}$. If $a=M_1(b) >_b M_2(b)$, the matching $M_2$ violates~\eqref{eq:stability_def} for the edge $\{a,b\}\in E$. Thus, $a=M_1(b) <_b M_2(b)$. Thus, $M_2(b)\neq \varnothing$ and the matching $M_1$ satisfies~\eqref{eq:stability_def} for the edge $e:=\{b,M_2(b)\}\in E$ only if $M_1(M_2(b))>_{M_2(b)} b$. Continuing in this way, we obtain statement~\eqref{eq:pref_first}.
+W.l.o.g. $v:=a\in \mathcal{A}$ and $b:=M_1(a) >_a M_2(a)$. If $a=M_1(b) >_b M_2(b)$, the matching $M_2$ violates~\eqref{eq:stability_def} for the edge $\{a,b\}\in E$. Thus, $a=M_1(b) <_b M_2(b)$. Thus, $M_2(b)\neq \varnothing$ and the matching $M_1$ satisfies~\eqref{eq:stability_def} for the edge $e:=\{b,M_2(b)\}\in E$ only if $M_1(M_2(b))>_{M_2(b)} b$. Continuing in this way, we obtain statement~\eqref{eq:pref_first}.
 \end{proof}
 
 
@@ -141,9 +142,7 @@ W.l.o.g. $v:=a\in \mathcal{A}$, $M_1(a) >_a M_2(a)$ and $b:=M_1(a)\in\mathcal{B}
 Let $M_1$ and $M_2$ be two stable matchings in $G$. Let $J_1$ be the union of $E(C)$ for connected components $C$ in $M_1 \triangle M_2$ satisfying~\eqref{eq:pref_first}, let $J_2:=(M_1\triangle M_2)\setminus C$. Then both $M_1\triangle J_1$ and $M_1\triangle J_2$ are stable matchings in $G$.
 \end{lemma}
 \begin{proof}
-By Lemma~\ref{lemma:pref}, $J_2$ is the union of $E(C)$ for connected components $C$ in $M_1 \triangle M_2$ satisfying~\eqref{eq:pref_second}.
-
-Clearly $M'_1:=M_1\triangle J_1$ and $M'_2:=M_1\triangle J_2$ are matchings in $G$. Let us assume that one of these matchings os not stable, w.l.o.g. assume that $M'_1$ does not satisfy~\eqref{eq:stability_def} for some edge $e:=\{a,b\}\in E$ with $a\in\mathcal{A}$ and $b\in\mathcal{B}$. 
+By Lemma~\ref{lemma:pref}, $J_2$ is the union of $E(C)$ for connected components $C$ in $M_1 \triangle M_2$ satisfying~\eqref{eq:pref_second}. Clearly $M'_1:=M_1\triangle J_1$ and $M'_2:=M_1\triangle J_2$ are matchings in $G$. Let us assume that one of these matchings is not stable, w.l.o.g. assume that $M'_1$ does not satisfy~\eqref{eq:stability_def} for some edge $e:=\{a,b\}\in E$ with $a\in\mathcal{A}$ and $b\in\mathcal{B}$. 
 
 Since $M_1$ and $M_2$ are stable, we have $|\{a,b\}\cap V(J_1)|=1$ and $|\{a,b\}\cap V(J_2)|=1$.
 If $a\in V(J_1)$ and $b\in V(J_2)$, then $M'_1(a)=M_2(a)$ and $M'_1(b)>_b M_2(b)$, and hence $M_2$ violates~\eqref{eq:stability_def} for $e:=\{a,b\}$. If $a\in V(J_2)$ and $b\in V(J_1)$, then $M'_1(a)=M_1(a)$ and $M'_1(b)>_b M_1(b)$, and hence $M_1$ violates~\eqref{eq:stability_def} for $e:=\{a,b\}$, contradiction.
@@ -177,10 +176,10 @@ $$
 
 
 \section{Linear Description}
-Let us define $Q(G)\subseteq\R^E$ be the polytope described  by the following linear constraints
+Let us define $Q(G)\subseteq\R^E$ to be the polytope described  by the following linear constraints
 \begin{align}
-x(\delta(v)) \leq 1\quad \forall v \in V\qquad \text{and} \qquad x_e \geq 0\quad \forall e \in E\,,\label{eq:lin_descr_match}\\
-x(\delta^{>a}(b))+ x(\delta^{>b}(a)) + x_{\{a,b\}} \geq 1 \quad \forall e:=\{a,b\} \in E \label{eq:lin_descr_stab}
+x(\delta(v)) \leq 1\,,\quad \forall v \in V\qquad \text{and} \qquad x_e \geq 0\,,\quad \forall e \in E\,,\label{eq:lin_descr_match}\\
+x(\delta^{>a}(b))+ x(\delta^{>b}(a)) + x_{\{a,b\}} \geq 1\,, \quad \forall e:=\{a,b\} \in E \label{eq:lin_descr_stab}
 \end{align}
 where $x(J) = \sum_{e \in J} x_e$ for any $J \subseteq E$.
 
@@ -195,15 +194,15 @@ Clearly, $P(G)\subseteq Q(G)$ because for every stable matching $M$ in $G$ the p
 	For every graph $G$ every vertex of the polytope $Q(G)$ is integral.
 \end{lemma}
 \begin{proof}
-First, let show that every vertex $x$ of $Q(G)$ has a coordinate equal to $0$ or a coordinate equal to $1$. Let us assume the contrary. As every vertex, $x\in \R^E$ is defined as the unique point, which tightly satisfies some $|E|$ constraints describing $Q(G)$. Since $x$ has no zero coordinate, we can assume  that the tight constraints are $x(\delta(v))\le 1$ for $v\in V_x$ and \eqref{eq:lin_descr_stab} for $e\in E_x$, where $|V_x|+|E_x|=|E|$. Moreover, let us assume that we choose the $|E|$ tight constraints so that $|V_x|$ is as large as possible. 
+First, let us show that every vertex $x$ of $Q(G)$ has a coordinate equal to $0$ or a coordinate equal to $1$. Let us assume the contrary. As every vertex, $x\in \R^E$ is defined as the unique point, which tightly satisfies some $|E|$ constraints describing $Q(G)$. Since $x$ has no zero coordinate, we can assume  that the tight constraints are $x(\delta(v))\le 1$ for $v\in V_x$ and \eqref{eq:lin_descr_stab} for $e\in E_x$, where $|V_x|+|E_x|=|E|$. Moreover, let us assume that we choose the $|E|$ tight constraints so that $|V_x|$ is as large as possible. 
 
-The constraints $x(\delta(v))=1$, $v\in V$ are linearly dependent, in particular $\sum_{a\in\mathcal{A}}\chi(\delta(a))=\sum_{b\in\mathcal{B}}\chi(\delta(b))$. Hence, we have $V_x\subsetneq V$. On the other hand if $a=N_{\max}(b)$ or $a=N_{\min}(b)$ then $e:=\{a,b\}\not\in E_x$. Indeed, $a=N_{\max}(b)$ implies $\delta^{>a}(b)=\varnothing$ then
+The constraints $x(\delta(v))=1$, $v\in V$ are linearly dependent, in particular $\sum_{a\in\mathcal{A}}\chi(\delta(a))=\sum_{b\in\mathcal{B}}\chi(\delta(b))$. Hence, we have $V_x\subsetneq V$. On the other hand if $a=N_{\max}(b)$ then $e:=\{a,b\}\not\in E_x$. Indeed, $a=N_{\max}(b)$ implies $\delta^{>a}(b)=\varnothing$ then
 $$
 	1\le x(\delta^{>a}(b))+ x(\delta^{>b}(a)) + x_{\{a,b\}}=x(\delta^{\ge b}(a)) \le x(\delta(a)) \le 1\,,
 $$
-showing that $\delta^{< b}(a)=\varnothing$ and hence $E_x\setminus e$, $V_x\cup \{a\}$ also define the vertex $x$. The case $a=N_{\min}(b)$ is analogous. Moreover, notice that $N_{\min}(v)\neq N_{\max}(v)$ for $v\in V_x$ since no coordinate of $x$ equals $1$.Thus, 
+showing that $\delta^{< b}(a)=\varnothing$ and hence $E_x\setminus e$, $V_x\cup \{a\}$ also define the vertex $x$. Analogously, we can show that if $b\in V_x$  and $a=N_{\min}(b)$ then $e:=\{a,b\}\not\in E_x$. Moreover, notice that $N_{\min}(v)\neq N_{\max}(v)$ for $v\in V_x$ since no coordinate of $x$ equals $1$. Thus, 
 \begin{multline*}
-	|E_x|=\frac{1}{2}\sum_{v\in V} |\delta(v)\cap E_x|\le \frac{1}{2}\sum_{v\in V_x} (|\delta(v)|-2)+\\\frac{1}{2}\sum_{v\in V\setminus V_x} (|\delta(v)|-2)= |E|-|V_x|-\frac{1}{2}|V\setminus V_x|\,,
+	|E_x|=\frac{1}{2}\sum_{v\in V} |\delta(v)\cap E_x|\le \frac{1}{2}\sum_{v\in V_x} (|\delta(v)|-2)+\\\frac{1}{2}\sum_{v\in V\setminus V_x} (|\delta(v)|-1)= |E|-|V_x|-\frac{1}{2}|V\setminus V_x|\,,
 \end{multline*}
 what implies $|E_x|+|V_x|< |E|$, contradiction.
 
