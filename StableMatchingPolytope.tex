@@ -98,14 +98,18 @@ Stable Matching\sep Polytope\sep Extreme Points
 {\color{red}
 \section*{TODO}
 \begin{enumerate}
-	\item introduction
-	\item formulate the idea of the proofs by Rothblum and van Vate
 	\item citation for structure of symmetric difference, adjacencies in the stable matching polytope
-	\item pictures
-	\item expand some explanations or make them clearer, if necessary
+	\item expand some explanations or make them clearer, if necessary: do Lemma 3.1 and Cor 3.2 have sufficient detail?
 \end{enumerate}
 }
-\section{Stable Matching Structure}
+
+\section{Introduction}
+
+In a seminal paper of Gale and Shapley \cite{gale1962college} they introduce the stable marriage problem wherein a set of $n$ men and women have strict preferences over all members of the opposite gender and the aim is to find a stable matching of men and women. A matching is said to be stable in this context if there does not exist a man-woman pair who mutually prefer each other to their current match. They show algorithmically that such a matching always exists. Vande Vate \cite{vate1989linear} observed that solutions to this problem can be formulated with assignment matrices, and gave the first linear description of stable matchings as extreme points of a polytope. Rothblum \cite{rothblum1992characterization} improved upon Vande Vate's formulation to account for incomplete preference lists and simplified the proof of integrality.
+
+This paper aims to provide an even simpler, more compact argument for the integrality of Rothblum's formulation. Our proof is inspired by the techniques of iterative rounding as outlined in Lau's \cite{lau2011iterative} manuscript on the method. A key feature of the argument is that it is highly elementary. We need only some simple results about the symmetric difference of stable matchings and some knowledge of the local structure of a variable in our formulation to achieve the desired result.
+
+\section{Stable Matching Symmetric Difference}
 
 Let $G = (V, E)$ be a bipartite graph  where the bipartition is given by node sets $\mathcal{A}$ and $\mathcal{B}$. Moreover, each node $a\in\mathcal{A}$ defines a total ordering $>_a$ on its neighbour nodes $N(a):=\{b \in\mathcal{B}: \{a,b\}\in E\}$;  the same holds for nodes in $\mathcal{B}$.
 
@@ -241,22 +245,22 @@ Let us define the \emph{stable matching polytope} $P(G)\subseteq\R^E$ for graph 
 $$
 	P(G):=\conv\{\chi(M)\in\R^E: M \text{ is a stable matching in } G\}\,.
 $$
-By~\cite{}, $P(G)$ is a nonempty polytope because every graph $G$ has a stable matching.
+By~\cite{gale1962college}, $P(G)$ is a nonempty polytope because every graph $G$ has a stable matching.
 
-Clearly, the vertices of $P(G)$ are in one to one correspondence with stable matchings in $G$. Moreover, Lemma~\ref{lemma:sym_stable} helps to understand what pairs of stable matchings in $G$ do not correspond to edges of $P(G)$.
+Clearly, the vertices of $P(G)$ are in one-to-one correspondence with stable matchings in $G$. Moreover, Lemma~\ref{lemma:sym_stable} helps to understand what pairs of stable matchings in $G$ do not correspond to edges of $P(G)$.
 
 \begin{lemma}\label{lemma:edge}
 Let $M_1$ and $M_2$ be two stable matchings in $G$ which define an edge of the polytope~$P(G)$. Then all connected components in $M_1\triangle M_2$ satisfy~\eqref{eq:pref_first} or all of them satisfy~\eqref{eq:pref_second}.  
 \end{lemma}
 \begin{proof}
-If the statement of the lemma does not hold, then in Lemma~\ref{lemma:sym_stable} the sets $J_1$ and $J_2$ are both nonempty, and hence we obtain two stable matchings $M_1\triangle J_1$ and $M_1\triangle J_2$ different from $M_1$, $M_2$ such that $\frac{1}{2}\chi(M_1\triangle J_1)+\frac{1}{2}\chi(M_1\triangle J_2)=\frac{1}{2}\chi(M_1)+\frac{1}{2}\chi(M_2)$, what contradicts the statement that $M_1$ and $M_2$ define an edge of $P(G)$.
+If the statement of the lemma does not hold, then in Lemma~\ref{lemma:sym_stable} the sets $J_1$ and $J_2$ are both nonempty, and hence we obtain two stable matchings $M_1\triangle J_1$ and $M_1\triangle J_2$ different from $M_1$, $M_2$ such that $\frac{1}{2}\chi(M_1\triangle J_1)+\frac{1}{2}\chi(M_1\triangle J_2)=\frac{1}{2}\chi(M_1)+\frac{1}{2}\chi(M_2)$, this contradicts the statement that $M_1$ and $M_2$ define an edge of $P(G)$.
 \end{proof}
 
 
 \begin{corollary}\label{cor:edge}
 Let $M_1$ and $M_2$ be two stable matchings in $G$ such that
 $$
-	M_1\cap\delta^{>a}(b)\neq\varnothing, M_1\cap\delta^{>b}(a)\neq\varnothing\quad\text{and}\quad M_2\cap\big(\delta^{>a}(b)\cup \delta^{>b}(a)\big)=\varnothing 
+	M_1\cap\delta^{>a}(b)\neq\varnothing,\ M_1\cap\delta^{>b}(a)\neq\varnothing\quad\text{and}\quad M_2\cap\big(\delta^{>a}(b)\cup \delta^{>b}(a)\big)=\varnothing 
 $$
  for some $a\in\mathcal{A}$ and $b\in\mathcal{B}$. Then, $M_1$ and $M_2$ do not define an edge of the polytope~$P(G)$.
 \end{corollary}
@@ -281,7 +285,7 @@ Clearly, $P(G)\subseteq Q(G)$ because for every stable matching $M$ in $G$ the p
 	For every graph $G$ every vertex of the polytope $Q(G)$ is integral.
 \end{lemma}
 \begin{proof}
-First, let us show that every vertex $x$ of $Q(G)$ has a coordinate equal to $0$ or a coordinate equal to $1$. Let us assume the contrary. As every vertex, $x\in \R^E$ is defined as the unique point, which tightly satisfies some $|E|$ constraints describing $Q(G)$. Since $x$ has no zero coordinate, we can assume  that the tight constraints are $x(\delta(v))\le 1$ for $v\in V_x$ and \eqref{eq:lin_descr_stab} for $e\in E_x$, where $|V_x|+|E_x|=|E|$. Moreover, let us assume that we choose the $|E|$ tight constraints so that $|V_x|$ is as large as possible. 
+First, let us show that every vertex $x$ of $Q(G)$ has a coordinate equal to $0$ or a coordinate equal to $1$. Let us assume the contrary. Every vertex $x\in \R^E$ is defined as the unique point which tightly satisfies some $|E|$ linearly independent constraints describing $Q(G)$. Since $x$ has no zero coordinate, we can assume  that the tight constraints are $x(\delta(v))\le 1$ for $v\in V_x$ and \eqref{eq:lin_descr_stab} for $e\in E_x$, where $|V_x|+|E_x|=|E|$. Moreover, let us assume that we choose the $|E|$ tight constraints so that $|V_x|$ is as large as possible. 
 
 The constraints $x(\delta(v))=1$, $v\in V$ are linearly dependent, in particular $\sum_{a\in\mathcal{A}}\chi(\delta(a))=\sum_{b\in\mathcal{B}}\chi(\delta(b))$. Hence, we have $V_x\subsetneq V$. On the other hand if $a=N_{\max}(b)$ then $e:=\{a,b\}\not\in E_x$. Indeed, $a=N_{\max}(b)$ implies $\delta^{>a}(b)=\varnothing$ then
 $$
@@ -291,16 +295,16 @@ showing that $\delta^{< b}(a)=\varnothing$ and hence $E_x\setminus e$, $V_x\cup 
 \begin{multline*}
 	|E_x|=\frac{1}{2}\sum_{v\in V} |\delta(v)\cap E_x|\le \frac{1}{2}\sum_{v\in V_x} (|\delta(v)|-2)+\\\frac{1}{2}\sum_{v\in V\setminus V_x} (|\delta(v)|-1)= |E|-|V_x|-\frac{1}{2}|V\setminus V_x|\,,
 \end{multline*}
-what implies $|E_x|+|V_x|< |E|$, contradiction.
+which implies $|E_x|+|V_x|< |E|$, contradiction.
 
 \bigskip
 
 Now let us assume that $G$ is a graph with the minimum number of edges such that $Q(G)$ is not an integral polytope. Let $x$ be a nonintegral vertex of $Q(G)$.
 
-Case $x_{\{a,b\}}=0$ for some $a\in \mathcal{A}$, $b\in\mathcal{B}$ and $e:=\{a,b\}\in E$. In this case, let $x'$ be obtained from $x$ by dropping the coordinate corresponding to $\{a,b\}$, and let $G'$ be the graph with $V(G')=V$ and $E(G')\setminus \{e\}$. Define $H'$ to be the hyperplane $\{x\in \R^{E(G')}: x(\delta^{>a}(b))+ x(\delta^{>b}(a))=1\}$. Then, $x'$ is a vertex of the polytope $P':=P(G')\cap H'$.
-But every vertex of $P'$ is either a vertex of $P(G')$ or an intersection of an edge of $P(G')$ with the hyperplane $H'$. Since by Corollary~\ref{cor:edge} there is no edge of $P(G')$ intersecting the hyperplane $H'$, $x'$ is a vertex of $P(G')$. By minimality of $G$, both $x'$ and $x$ are integral, contradiction.
+Case $x_{\{a,b\}}=0$ for some $a\in \mathcal{A}$, $b\in\mathcal{B}$ and $e:=\{a,b\}\in E$. In this case, let $x'$ be obtained from $x$ by dropping the coordinate corresponding to $\{a,b\}$, and let $G'$ be the graph with $V(G')=V$ and $E(G') = E \setminus \{e\}$. Define $H'$ to be the hyperplane $\{x\in \R^{E(G')}: x(\delta^{>a}(b))+ x(\delta^{>b}(a))=1\}$. Then, $x'$ is a vertex of the polytope $P':=P(G')\cap H'$.
+But every vertex of $P'$ is either a vertex of $P(G')$ or an intersection of an edge of $P(G')$ with the hyperplane $H'$. Since by Corollary~\ref{cor:edge} there is no edge of $P(G')$ intersecting the hyperplane $H'$, $x'$ is a vertex of $P(G')$. By minimality of $G$ both $x'$ and $x$ are integral, a contradiction.
 
-Case $x_{\{a,b\}}=1$ for some $a\in \mathcal{A}$, $b\in\mathcal{B}$. Let $x'$ be obtained by dropping the coordinates corresponding to $\delta(a)\cup\delta(b)$, and let $G'$ be the graph with $V(G')=V\setminus\{a,b\}$ and $E(G')\setminus \big(\delta(a)\cup\delta(b)\big)$. It is straightforward to see that $x'$ is a vertex of $P(G')$. Thus by minimality of $G$, both $x'$ and $x$ are integral, contradiction. 
+Case $x_{\{a,b\}}=1$ for some $a\in \mathcal{A}$, $b\in\mathcal{B}$. Let $x'$ be obtained by dropping the coordinates corresponding to $\delta(a)\cup\delta(b)$, and let $G'$ be the graph with $V(G')=V\setminus\{a,b\}$ and $E(G') = E \setminus \big(\delta(a)\cup\delta(b)\big)$. It is straightforward to see that $x'$ is a vertex of $P(G')$. Thus by minimality of $G$ both $x'$ and $x$ are integral, a contradiction. 
 \end{proof}
 
 
