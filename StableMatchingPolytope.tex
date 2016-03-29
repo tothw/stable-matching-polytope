@@ -1,5 +1,5 @@
 \documentclass[preprint]{elsarticle}
-%\usepackage[margin=1in, bottom=1in, top=1in]{geometry} %1 inch margins
+\usepackage[margin=1in, bottom=1in, top=1in]{geometry} %1 inch margins
 \usepackage{amsmath, amssymb, amstext}
 \usepackage{fancyhdr}
 \usepackage{algorithm}
@@ -79,7 +79,8 @@
 %% \address[label1]{<address>}
 %% \address[label2]{<address>}
 
-\title{Linear Description for Stable Matching Polytope: Alternative Proof}
+\title{The Power of Locality: An Elementary Integrality
+  Proof of Rothblum's Stable Matching Formulation}
 \author[co]{Jochen K\"{o}nemann}
 \author[co]{Kanstantsin Pashkovich}
 \author[co]{Justin Toth\corref{cor1}}
@@ -89,7 +90,11 @@
 \cortext[cor1]{Corresponding author}
 
 \begin{abstract}
-In this paper we provide an alternative proof for the description.
+  In this paper we consider Rothblum's linear description of the
+  convex hull of incidence vectors of stable matchings in bipartite
+  graphs. We provide a short and surprisingly elementary proof that
+  leverages only the existence of a local $0,1$-edge to achieve global
+  integrality.
 \end{abstract}
 \begin{keyword}
 Stable Matching\sep Polytope\sep Extreme Points
@@ -105,42 +110,80 @@ Stable Matching\sep Polytope\sep Extreme Points
 
 \section{Introduction}
 
-In a seminal paper of Gale and Shapley \cite{gale1962college} they introduce the stable marriage problem wherein a set of $n$ men and women have strict preferences over all members of the opposite gender and the aim is to find a stable matching of men and women. A matching is said to be stable in this context if there does not exist a man-woman pair who mutually prefer each other to their current match. They show algorithmically that such a matching always exists. Vande Vate \cite{vate1989linear} observed that solutions to this problem can be formulated with assignment matrices, and gave the first linear description of stable matchings as extreme points of a polytope. Rothblum \cite{rothblum1992characterization} improved upon Vande Vate's formulation to account for incomplete preference lists and simplified the proof of integrality.
+In an instance of the {\em stable marriage} problem, we are given a
+bipartite graph $G=(\cA \cup \cB, E)$ where $\cA$ and $\cB$
+traditionally represent sets of women and men, respectively. An edge
+$ab \in E$ corresponds to an {\em acceptable} pair $a$ and $b$ of man
+and woman. In the following, we let $N(u) = \{ v \,:\, uv \in E \}$ be
+the set of neighbours of $u$ in $G$. Each vertex
+$u \in V=\cA \cup \cB$ specifies a complete {\em preference order}
+$>_u$ over its neighbours where vertex $u$ prefers neighbour $v_1$
+over $v_2$ iff $v_1 >_u v_2$.  In their seminal paper
+\cite{gale1962college}, Gale and Shapley introduced the above problem,
+and provided a constructive proof of existence of so called {\em
+  stable} matchings. A matching is a collection $M$ of edges in $E$
+such that each vertex is incident to at most one edge in $M$. $M$ is
+stable if, for all $uv \not\in M$, $M(u) >_u v$ or $M(v) >_v u$ where
+$M(u)$ is the vertex matched to $u$ in $M$ if that exists, and
+$M(u)=\varnothing$, otherwise.
 
-This paper aims to provide an even simpler, more compact argument for the integrality of Rothblum's formulation. Our proof is inspired by the techniques of iterative rounding as outlined in Lau's \cite{lau2011iterative} manuscript on the method. A key feature of the argument is that it is highly elementary. We need only some simple results about the symmetric difference of stable matchings and some knowledge of the local structure of a variable in our formulation to achieve the desired result.
+In this paper, we focus on polyhedral characterizations of the set of
+incidence vectors of stable matchings.  Vande Vate first provided such
+a description in \cite{vate1989linear} for the special case where $G$
+is a complete bipartite graph.  Rothblum
+\cite{rothblum1992characterization} later generalized Vande Vate's
+result to incomplete preference lists and simplified the proof of
+integrality.
 
-\section{Stable Matching Symmetric Difference}
+We provide an even simpler, more compact argument for the integrality
+of Rothblum's formulation. Our proof is inspired by the technique of
+{\em iterative rounding} as outlined in Lau et al.'s
+monograph~\cite{lau2011iterative}. Our arguments are elementary and
+rely solely on some well-known results on the symmetric difference
+of stable matchings as well as some knowledge of the local structure
+of a variable in our formulation to achieve the desired result.
 
-Let $G = (V, E)$ be a bipartite graph  where the bipartition is given by node sets $\mathcal{A}$ and $\mathcal{B}$. Moreover, each node $a\in\mathcal{A}$ defines a total ordering $>_a$ on its neighbour nodes $N(a):=\{b \in\mathcal{B}: \{a,b\}\in E\}$;  the same holds for nodes in $\mathcal{B}$.
+\section{Stable matchings: Preliminaries}
 
-Let us introduce the following notation. For $a\in \mathcal{A}$ and $b \in N(\mathcal{A})$, we can define $\delta^{>b}(a):=\{ \{a,\beta\}\in E: \beta>_a b \}$. Similarly we can define $\delta^{>a}(b)$, $\delta^{\leq b}(a)$, $\delta^{\geq b}(a)$, etc. For $a\in \mathcal{A}$ let $N_{\max}(a)$ denote the maximum element in $N(a)$ with respect to $>_a$, analogously define $N_{\min}(a)$ and $N_{\max}(b)$, $N_{\min}(b)$ for $b\in\mathcal{B}$. 
-
-Given a matching $M$ and $v\in V$, we define $M(v)$ as a neighbour of $v$ in $M$ if $v$ is matched by $M$, otherwise $M(v):=\varnothing$. To simplify notation we understand $>_v$, $v\in V$ as a total ordering on the set $N(v)\cup\{\varnothing\}$, where $\varnothing$ is the smallest element with respect to $>_v$.
-A matching $M$ in $G$ is called a $\emph{stable matching}$ if for every edge $e=\{a,b\}\in E$ we have
+We briefly review a couple of well-known facts on stable matchings. 
+For each edge $uv$ in $E$, we let
+$\delta^{>u}(v):=\{ \{v,w\}\in E: w >_v u \}$ to be the set of edges
+incident to $v$ those of its neighbours that are preferred to $u$. 
+For $v \in V$ let $N_{\max}(v)$ denote its highest-ranked neighbour. 
+For ease of notation, we will from now on think of $>_v$ as a total
+ordering on $N(v) \cup \varnothing$ where 
+$\varnothing$ is the lowest-ranked element of each vertex $v \in V$. 
+A matching $M$ in $G$ is now easily seen to be stable if 
 \begin{equation}\label{eq:stability_def}
-		M \, \cap \, \big(\delta^{>a}(b) \cup \delta^{>b}(a) \cup  \{e\} \big)\neq\varnothing\,,
+		M \, \cap \, \big(\delta^{>u}(v) \cup \delta^{>v}(u) \cup  \{e\} \big)\neq\varnothing\,,
 \end{equation}
-i.e. no edge $\{a,b\}\in E$ is absent in $M$  if $a>_b M(b)$ and $b>_a M(a)$.
-
-
-The following lemmas study the connected components of $M_1\triangle M_2:=\{ e\in E: |M_1\cap \{e\}|+|M_2\cap \{e\}|=1\}$ for stable matchings $M_1$, $M_2$ in $G$. Here, $V(C)$ and $E(C)$ denote the node and edge sets of a graph $C$.
+for all $uv \in E$. The following lemmas study the connected components of
+the {\em symmetric difference} $M_1\triangle M_2:=M_1\setminus M_2
+\cup M_2 \setminus M_1$ of 
+stable matchings $M_1$ and $M_2$. Here, $V(C)$ and $E(C)$ denote
+the set of vertices and edges, respectively, of a graph $C$.
 
 \begin{lemma}\label{lemma:pref}
-Let $M_1$ and $M_2$ be two stable matchings in $G$ and let $C$ be a connected component in $M_1 \triangle M_2$. Then, either
-\begin{equation}\label{eq:pref_first}
-	M_1(a)>_a M_2(a)\,,\,\forall a\in V(C) \cap\mathcal{A}\quad \text{and} \quad  M_2(b)>_b M_1(b)\,,\,  \forall b\in V(C) \cap\mathcal{B}
+Let $M_1$ and $M_2$ be two stable matchings in $G$ and let $C$ be a
+connected component in $M_1 \triangle M_2$. Then for some
+$\{i,j\}=\{1,2\}$, we have
+\begin{equation}\label{eq:pref}
+	M_i(a)>_a M_j(a) ~~\text{and} ~~  M_j(b)>_b M_i(b)\,,\,
 \end{equation}
-or 
-\begin{equation}\label{eq:pref_second}
-	M_2(a)>_a M_1(a)\,,\,\forall a\in V(C) \cap\mathcal{A}\quad \text{and} \quad  M_1(b)>_b M_2(b)\,,\,  \forall b\in V(C) \cap\mathcal{B}
-\end{equation}
+for all $a \in V(C) \cap \cA$ and $v \in V(C) \cap \cB$.
 \end{lemma}
-
-
 \begin{proof}
-Since $M_1$ and $M_2$ are matchings, $C$ is a path or a cycle. Let $v\in V$ be an end node of $C$ if $C$ is a path, otherwise let $v$ be an arbitrary node of $C$. 
+  Since $M_1$ and $M_2$ are matchings, $C$ is a path or a cycle. Let
+  $v\in V$ be an end node of $C$ if $C$ is a path, otherwise let $v$
+  be an arbitrary node of $C$.
 
-W.l.o.g. $v:=a\in \mathcal{A}$ and $b:=M_1(a) >_a M_2(a)$. If $a=M_1(b) >_b M_2(b)$, the matching $M_2$ violates~\eqref{eq:stability_def} for the edge $\{a,b\}\in E$. Thus, $M_2(b) >_b M_1(b)=a$. Thus, $M_2(b)\neq \varnothing$ and the matching $M_1$ satisfies~\eqref{eq:stability_def} for the edge $e:=\{b,M_2(b)\}\in E$ only if $M_1(M_2(b))>_{M_2(b)} b$. Continuing in this way, we obtain statement~\eqref{eq:pref_first}.
+  W.l.o.g. $v:=a\in \mathcal{A}$ and $b:=M_1(a) >_a M_2(a)$. If
+  $a=M_1(b) >_b M_2(b)$, the matching $M_2$
+  violates~\eqref{eq:stability_def} for the edge $ab\in E$. Thus,
+  $M_2(b) >_b M_1(b)=a$. Thus, $M_2(b)\neq \varnothing$ and the
+  matching $M_1$ satisfies~\eqref{eq:stability_def} for the edge
+  $e:=bM_2(b)\in E$ only if $M_1(M_2(b))>_{M_2(b)} b$. Continuing
+  in this way, we obtain statement~\eqref{eq:pref}.
 \end{proof}
 
 \begin{figure}[H]
@@ -177,13 +220,31 @@ W.l.o.g. $v:=a\in \mathcal{A}$ and $b:=M_1(a) >_a M_2(a)$. If $a=M_1(b) >_b M_2(
 \end{figure}
 
 \begin{lemma}\label{lemma:sym_stable} 
-Let $M_1$ and $M_2$ be two stable matchings in $G$. Let $J_1$ be the union of $E(C)$ for connected components $C$ in $M_1 \triangle M_2$ satisfying~\eqref{eq:pref_first}, let $J_2:=(M_1\triangle M_2)\setminus C$. Then both $M_1\triangle J_1$ and $M_1\triangle J_2$ are stable matchings in $G$.
+  Let $M_1$ and $M_2$ be two stable matchings in $G$. Let $J_1$ be
+  those connected components of $M_1 \triangle M_2$ 
+  that satisfy
+  \eqref{eq:pref} for $i=1$ and $j=2$ (i.e., $\cA$ vertices prefer
+  $M_1$ edges); let $J_2$ be all
+  remaining connected components of $M_1 \triangle M_2$. 
+  Then both $M'_1 = M_1\triangle J_1$ and
+  $M'_2=M_1\triangle J_2$ are stable matchings in $G$.
 \end{lemma}
 \begin{proof}
-By Lemma~\ref{lemma:pref}, $J_2$ is the union of $E(C)$ for connected components $C$ in $M_1 \triangle M_2$ satisfying~\eqref{eq:pref_second}. Clearly $M'_1:=M_1\triangle J_1$ and $M'_2:=M_1\triangle J_2$ are matchings in $G$. Let us assume that one of these matchings is not stable, w.l.o.g. assume that $M'_1$ does not satisfy~\eqref{eq:stability_def} for some edge $e:=\{a,b\}\in E$ with $a\in\mathcal{A}$ and $b\in\mathcal{B}$. 
+  For contradiction assume
+  that one of the matchings $M'_1$ and $M'_2$ is not stable; w.l.o.g. assume that
+  $M'_1$ does not satisfy~\eqref{eq:stability_def} for some edge
+  $ab\in E$ with $a\in\mathcal{A}$ and $b\in\mathcal{B}$.
 
-Since $M_1$ and $M_2$ are stable, we have $|\{a,b\}\cap V(J_1)|=1$ and $|\{a,b\}\cap V(J_2)|=1$.
-If $a\in V(J_1)$ and $b\in V(J_2)$, then $M'_1(a)=M_2(a)$ and $M'_1(b)>_b M_2(b)$, and hence $M_2$ violates~\eqref{eq:stability_def} for $e:=\{a,b\}$. If $a\in V(J_2)$ and $b\in V(J_1)$, then $M'_1(a)=M_1(a)$ and $M'_1(b)>_b M_1(b)$, and hence $M_1$ violates~\eqref{eq:stability_def} for $e:=\{a,b\}$, contradiction.
+  Since $M_1$ and $M_2$ are stable, $a$ and $b$ cannot both lie in the
+  same connected component of $J_1 \cup J_2$. Suppose first that $a \in
+  V(J_1)$, and $b \in V(J_2)$. In this case $M'_1(a)=M_2(a)$ and
+  $M'_1(b) = M_1(b) >_b M_2(b)$. Thus $M_2$
+  violates~\eqref{eq:stability_def} for edge $ab$. 
+
+  If $a\in V(J_2)$
+  and $b\in V(J_1)$, then $M'_1(a)=M_1(a)$ and $M'_1(b)>_b M_1(b)$,
+  and hence $M_1$ violates~\eqref{eq:stability_def} for edge $ab$,
+  contradiction.
 \end{proof}
 
 \begin{figure}[H]
@@ -226,7 +287,7 @@ If $a\in V(J_1)$ and $b\in V(J_2)$, then $M'_1(a)=M_2(a)$ and $M'_1(b)>_b M_2(b)
 
 \node[]() at (0, 5) {$b_1 >_{a_1} b_2$};
 \node[]() at (2, 5) {$a_2 >_{b_1} a_1$};
-\node[]() at (0, 1) {$b_2 >_{a_1} b_1$};
+\node[]() at (0, 1) {$b_2 >_{a_2} b_1$};
 \node[]() at (2,1) {$a_1 >_{b_2} a_2$};
 
 \node[]() at (5, 5) {$b_4 >_{a_3} b_3$};
@@ -245,36 +306,68 @@ Let us define the \emph{stable matching polytope} $P(G)\subseteq\R^E$ for graph 
 $$
 	P(G):=\conv\{\chi(M)\in\R^E: M \text{ is a stable matching in } G\}\,.
 $$
-By~\cite{gale1962college}, $P(G)$ is a nonempty polytope because every graph $G$ has a stable matching.
+By~\cite{gale1962college}, $P(G)$ is a nonempty polytope because every
+graph $G$ has a stable matching.
 
-Clearly, the vertices of $P(G)$ are in one-to-one correspondence with stable matchings in $G$. Moreover, Lemma~\ref{lemma:sym_stable} helps to understand what pairs of stable matchings in $G$ do not correspond to edges of $P(G)$.
+Clearly, the vertices of $P(G)$ are in one-to-one correspondence with
+stable matchings in $G$. Moreover, Lemma~\ref{lemma:sym_stable} helps
+to understand what pairs of stable matchings in $G$ do not correspond
+to edges of $P(G)$.
 
 \begin{lemma}\label{lemma:edge}
-Let $M_1$ and $M_2$ be two stable matchings in $G$ which define an edge of the polytope~$P(G)$. Then all connected components in $M_1\triangle M_2$ satisfy~\eqref{eq:pref_first} or all of them satisfy~\eqref{eq:pref_second}.  
+  Let $M_1$ and $M_2$ be two stable matchings in $G$ which define an
+  edge of the polytope~$P(G)$. 
+  Then all connected components in
+  $M_1\triangle M_2$ satisfy~\eqref{eq:pref} for unique choice of $i$
+  and $j$. 
 \end{lemma}
 \begin{proof}
-If the statement of the lemma does not hold, then in Lemma~\ref{lemma:sym_stable} the sets $J_1$ and $J_2$ are both nonempty, and hence we obtain two stable matchings $M_1\triangle J_1$ and $M_1\triangle J_2$ different from $M_1$, $M_2$ such that $\frac{1}{2}\chi(M_1\triangle J_1)+\frac{1}{2}\chi(M_1\triangle J_2)=\frac{1}{2}\chi(M_1)+\frac{1}{2}\chi(M_2)$, this contradicts the statement that $M_1$ and $M_2$ define an edge of $P(G)$.
+  Suppose for contradiction that the statement of the lemma does not
+  hold. Hence the sets $J_1$ and $J_2$ are both nonempty in
+  Lemma~\ref{lemma:sym_stable}, and we obtain stable matchings
+  $M_1\triangle J_1$ and $M_1\triangle J_2$ that are different from $M_1$,
+  $M_2$. 
+  We also have 
+  \[ \frac{1}{2}\chi(M_1\triangle J_1)+\frac{1}{2}\chi(M_1\triangle
+  J_2) =\frac{1}{2}\chi(M_1)+\frac{1}{2}\chi(M_2),\]
+  and hence there are two distinct convex combinations of the midpoint
+  of the edge between $M_1$ and $M_2$; a contradiction. 
 \end{proof}
 
 
 \begin{corollary}\label{cor:edge}
 Let $M_1$ and $M_2$ be two stable matchings in $G$ such that
-$$
-	M_1\cap\delta^{>a}(b)\neq\varnothing,\ M_1\cap\delta^{>b}(a)\neq\varnothing\quad\text{and}\quad M_2\cap\big(\delta^{>a}(b)\cup \delta^{>b}(a)\big)=\varnothing 
-$$
+\begin{equation}\label{eq:edge}
+M_1\cap\delta^{>a}(b)\neq\varnothing,\
+M_1\cap\delta^{>b}(a)\neq\varnothing\quad\text{and}\quad
+M_2\cap\big(\delta^{>a}(b)\cup \delta^{>b}(a)\big)=\varnothing
+\end{equation}
  for some $a\in\mathcal{A}$ and $b\in\mathcal{B}$. Then, $M_1$ and $M_2$ do not define an edge of the polytope~$P(G)$.
 \end{corollary}
+\begin{proof}
+  Condition \eqref{eq:edge} implies that both $a$ and $b$ prefer
+  $M_1$ over $M_2$. Hence, both sets $J_1$ and $J_2$ as given in Lemma
+  \ref{lemma:sym_stable} must be non-empty. An application of Lemma
+  \ref{lemma:edge} completes the proof of the corollary.
+\end{proof}
 
 
 \section{Linear Description}
-Let us define $Q(G)\subseteq\R^E$ to be the polytope described  by the following linear constraints
+Let us define $Q(G)\subseteq\R^E$ to be the polytope described by the
+following linear constraints
 \begin{align}
-x(\delta(v)) \leq 1\,,\quad \forall v \in V\qquad \text{and} \qquad x_e \geq 0\,,\quad \forall e \in E\,,\label{eq:lin_descr_match}\\
-x(\delta^{>a}(b))+ x(\delta^{>b}(a)) + x_{\{a,b\}} \geq 1\,, \quad \forall e:=\{a,b\} \in E \label{eq:lin_descr_stab}
+  x(\delta(v)) \leq 1\,,\quad \forall v \in V\qquad \text{and} \qquad x_e \geq 0\,,\quad \forall e \in E\,,\label{eq:lin_descr_match}\\
+  x(\delta^{>a}(b))+ x(\delta^{>b}(a)) + x_{ab} \geq 1\,, \quad \forall ab \in E \label{eq:lin_descr_stab}
 \end{align}
 where $x(J) = \sum_{e \in J} x_e$ for any $J \subseteq E$.
 
-Clearly, $P(G)\subseteq Q(G)$ because for every stable matching $M$ in $G$ the point $x:=\chi(M)$  satisfies~\eqref{eq:lin_descr_match} and by~\eqref{eq:stability_def} the point $x$ also satisfies~\eqref{eq:lin_descr_stab}. On the other hand, every integral point in $Q(G)$ equals $\chi(M)$ for some stable matching $M$ in~$G$. In the remaining part of the paper we show that every vertex of $Q(G)$ is integral, thus proving the main theorem.
+Clearly, $P(G)\subseteq Q(G)$ because for every stable matching $M$ in
+$G$ the point $x:=\chi(M)$ satisfies~\eqref{eq:lin_descr_match} and
+by~\eqref{eq:stability_def} the point $x$ also
+satisfies~\eqref{eq:lin_descr_stab}. On the other hand, every integral
+point in $Q(G)$ equals $\chi(M)$ for some stable matching $M$
+in~$G$. In the remaining part of the paper we show that every vertex
+of $Q(G)$ is integral, thus proving the main theorem.
 
 \begin{theorem}
 	For every graph $G$ the polytope $P(G)$ equals $Q(G)$.
@@ -285,26 +378,53 @@ Clearly, $P(G)\subseteq Q(G)$ because for every stable matching $M$ in $G$ the p
 	For every graph $G$ every vertex of the polytope $Q(G)$ is integral.
 \end{lemma}
 \begin{proof}
-First, let us show that every vertex $x$ of $Q(G)$ has a coordinate equal to $0$ or a coordinate equal to $1$. Let us assume the contrary. Every vertex $x\in \R^E$ is defined as the unique point which tightly satisfies some $|E|$ linearly independent constraints describing $Q(G)$. Since $x$ has no zero coordinate, we can assume  that the tight constraints are $x(\delta(v))\le 1$ for $v\in V_x$ and \eqref{eq:lin_descr_stab} for $e\in E_x$, where $|V_x|+|E_x|=|E|$. Moreover, let us assume that we choose the $|E|$ tight constraints so that $|V_x|$ is as large as possible. 
+  We first claim that every vertex $x$ of $Q(G)$ satisfies $x_e
+  \in \{0,1\}$ for at least one $e \in E$. Assume for contradiction
+  that $0 < x_e < 1$ for all $e \in E$. Hence, $x$ is uniquely defined 
+  by $|E|$ linearly independent tight constraints
+  describing $Q(G)$. Since $x$ has no zero coordinate, we can assume
+  that the tight constraints are $x(\delta(v))\le 1$ for $v\in V_x$
+  and \eqref{eq:lin_descr_stab} for $e\in E_x$, where
+  $|V_x|+|E_x|=|E|$. Moreover, let us assume that we choose the $|E|$
+  tight constraints so that $|V_x|$ is as large as possible.
 
-The constraints $x(\delta(v))=1$, $v\in V$ are linearly dependent, in particular $\sum_{a\in\mathcal{A}}\chi(\delta(a))=\sum_{b\in\mathcal{B}}\chi(\delta(b))$. Hence, we have $V_x\subsetneq V$. On the other hand if $a=N_{\max}(b)$ then $e:=\{a,b\}\not\in E_x$. Indeed, $a=N_{\max}(b)$ implies $\delta^{>a}(b)=\varnothing$ then
+The constraints $x(\delta(v))=1$, $v\in V$ are linearly dependent, in particular $\sum_{a\in\mathcal{A}}\chi(\delta(a))=\sum_{b\in\mathcal{B}}\chi(\delta(b))$. Hence, we have $V_x\subsetneq V$. On the other hand if $a=N_{\max}(b)$ then $e:=ab\not\in E_x$. Indeed, $a=N_{\max}(b)$ implies $\delta^{>a}(b)=\varnothing$ then
 $$
-	1\le x(\delta^{>a}(b))+ x(\delta^{>b}(a)) + x_{\{a,b\}}=x(\delta^{\ge b}(a)) \le x(\delta(a)) \le 1\,,
+	1\le x(\delta^{>a}(b))+ x(\delta^{>b}(a)) + x_{ab}=x(\delta^{\ge b}(a)) \le x(\delta(a)) \le 1\,,
 $$
-showing that $\delta^{< b}(a)=\varnothing$ and hence $E_x\setminus e$, $V_x\cup \{a\}$ also define the vertex $x$. Analogously, we can show that if $b\in V_x$  and $a=N_{\min}(b)$ then $e:=\{a,b\}\not\in E_x$. Moreover, notice that $N_{\min}(v)\neq N_{\max}(v)$ for $v\in V_x$ since no coordinate of $x$ equals $1$. Thus, 
-\begin{multline*}
-	|E_x|=\frac{1}{2}\sum_{v\in V} |\delta(v)\cap E_x|\le \frac{1}{2}\sum_{v\in V_x} (|\delta(v)|-2)+\\\frac{1}{2}\sum_{v\in V\setminus V_x} (|\delta(v)|-1)= |E|-|V_x|-\frac{1}{2}|V\setminus V_x|\,,
-\end{multline*}
+showing that $\delta^{< b}(a)=\varnothing$ and hence $E_x\setminus e$, $V_x\cup \{a\}$ also define the vertex $x$. Analogously, we can show that if $b\in V_x$  and $a=N_{\min}(b)$ then $e:=ab\not\in E_x$. Moreover, notice that $N_{\min}(v)\neq N_{\max}(v)$ for $v\in V_x$ since no coordinate of $x$ equals $1$. Thus, 
+\[
+	|E_x|=\frac{1}{2}\sum_{v\in V} |\delta(v)\cap E_x|\le \frac{1}{2}\sum_{v\in V_x} (|\delta(v)|-2)+\frac{1}{2}\sum_{v\in V\setminus V_x} (|\delta(v)|-1)= |E|-|V_x|-\frac{1}{2}|V\setminus V_x|\,,
+\]
 which implies $|E_x|+|V_x|< |E|$, contradiction.
 
 \bigskip
 
-Now let us assume that $G$ is a graph with the minimum number of edges such that $Q(G)$ is not an integral polytope. Let $x$ be a nonintegral vertex of $Q(G)$.
+Now let us assume that $G$ is a graph with the minimum number of edges such that $Q(G)$ is not an integral polytope. Let $x$ be a non-integral vertex of $Q(G)$.
 
-Case $x_{\{a,b\}}=0$ for some $a\in \mathcal{A}$, $b\in\mathcal{B}$ and $e:=\{a,b\}\in E$. In this case, let $x'$ be obtained from $x$ by dropping the coordinate corresponding to $\{a,b\}$, and let $G'$ be the graph with $V(G')=V$ and $E(G') = E \setminus \{e\}$. Define $H'$ to be the hyperplane $\{x\in \R^{E(G')}: x(\delta^{>a}(b))+ x(\delta^{>b}(a))=1\}$. Then, $x'$ is a vertex of the polytope $P':=P(G')\cap H'$.
-But every vertex of $P'$ is either a vertex of $P(G')$ or an intersection of an edge of $P(G')$ with the hyperplane $H'$. Since by Corollary~\ref{cor:edge} there is no edge of $P(G')$ intersecting the hyperplane $H'$, $x'$ is a vertex of $P(G')$. By minimality of $G$ both $x'$ and $x$ are integral, a contradiction.
+Case $x_{ab}=0$ for some $a\in \mathcal{A}$, $b\in\mathcal{B}$ and
+$e:=ab\in E$. In this case, let $x'$ be obtained from $x$ by dropping
+the coordinate corresponding to $ab$, and let $G'$ be the graph with
+$V(G')=V$ and $E(G') = E \setminus \{e\}$. Define $H'$ to be the
+hyperplane
+$\{x\in \R^{E(G')}: x(\delta^{>a}(b))+ x(\delta^{>b}(a))=1\}$. Then,
+$x'$ is a vertex of the polytope $P':=P(G')\cap H'$.  But every vertex
+of $P'$ is either a vertex of $P(G')$ or the intersection of an edge
+of $P(G')$ with the hyperplane $H'$. Since vertices of $P(G')$ are
+integral by the minimal choice of graph $G$, it remains to consider
+vertices at the intersection of $H'$ and an edge of $P(G')$. Such an
+edge would be defined by stable matchings $M_1$ and $M_2$ that are
+easily checked to satisfy \eqref{eq:edge} for the given edge $ab$.
+Corollary \ref{cor:edge} therefore readily implies that $P(G')$ cannot
+have an edge connecting $M_1$ and $M_2$.
 
-Case $x_{\{a,b\}}=1$ for some $a\in \mathcal{A}$, $b\in\mathcal{B}$. Let $x'$ be obtained by dropping the coordinates corresponding to $\delta(a)\cup\delta(b)$, and let $G'$ be the graph with $V(G')=V\setminus\{a,b\}$ and $E(G') = E \setminus \big(\delta(a)\cup\delta(b)\big)$. It is straightforward to see that $x'$ is a vertex of $P(G')$. Thus by minimality of $G$ both $x'$ and $x$ are integral, a contradiction. 
+Case $x_{ab}=1$ for some $a\in \mathcal{A}$, $b\in\mathcal{B}$. Let
+$x'$ be obtained by dropping the coordinates corresponding to
+$\delta(a)\cup\delta(b)$, and let $G'$ be the graph with
+$V(G')=V\setminus\{a,b\}$ and
+$E(G') = E \setminus \big(\delta(a)\cup\delta(b)\big)$. It is
+straightforward to see that $x'$ is a vertex of $P(G')$. Thus by
+minimality of $G$ both $x'$ and $x$ are integral, a contradiction.
 \end{proof}
 
 
