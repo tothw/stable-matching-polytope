@@ -10,6 +10,7 @@
 \usepackage{tikz}
 \usetikzlibrary[topaths]
 \usetikzlibrary{decorations.pathmorphing}
+\usetikzlibrary{decorations.markings}
 \DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
 \DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
 
@@ -50,6 +51,9 @@
 \DeclareMathOperator{\convOp}{conv}
 \newcommand{\conv}{\convOp}
 
+\tikzset{->-/.style={decoration={
+  markings,
+  mark=at position #1 with {\arrow{>}}},postaction={decorate}}}
 
 \begin{document}
 \begin{frontmatter}
@@ -174,7 +178,7 @@ for all $a \in V(C) \cap \cA$ and $v \in V(C) \cap \cB$.
 \begin{proof}
   Since $M_1$ and $M_2$ are matchings, $C$ is a path or a cycle. Let
   $v\in V$ be an end node of $C$ if $C$ is a path, otherwise let $v$
-  be an arbitrary node of $C$.
+  be an arbitrary node of $C$. For visualization of the proof see Figure~\ref{fig:lemma_pref}.
 
   W.l.o.g. $v:=a\in \mathcal{A}$ and $b:=M_1(a) >_a M_2(a)$. If
   $a=M_1(b) >_b M_2(b)$, the matching $M_2$
@@ -187,35 +191,121 @@ for all $a \in V(C) \cap \cA$ and $v \in V(C) \cap \cB$.
 
 \begin{figure}[H]
 \centering
-\begin{tikzpicture}
-\node[] (J1) at (0,5) {$C$:};
+\begin{tikzpicture}[yscale=.8]
 
-\node[shape=circle,draw=black] (1) at (0,4) {$a_1$};
-\node[shape=circle,draw=black](2) at (2,4){$b_1$};
-\node[shape=circle,draw=black] (3) at (0,2) {$a_2$};
-\node[shape=circle,draw=black](4) at (2,2){$b_2$};
+%% first subfigure
 
-\path[-] (1) edge  (2);
-\path[-,line width=2pt,decoration={zigzag,segment length=4,amplitude=.9,post=lineto,post length=2pt}] (1) edge[decorate] (4);
-\path[-] (3) edge (4);
-\path[-,line width=2pt,decoration={zigzag,segment length=4,amplitude=.9,post=lineto,post length=2pt}] (3) edge[decorate] (2);
+%% nodes
 
-\node[](M1) at (9,3.5) {$M_1$ edges:};
-\node[](m11) at (10,3.5){};
-\node[](m12) at (11,3.5){};
-\path[-](m11) edge(m12);
-\node[](M2) at (9,3) {$M_2$ edges:};
-\node[](m21) at (10,3){};
-\node[](m22) at (11,3){};
-\path[-,decoration={zigzag,segment length=4,amplitude=.9,post=lineto,post length=2pt}](m21) edge[decorate](m22);
+\node[shape=circle,draw=black,inner sep=0pt, minimum size=4pt, label=left:$a_1$] (a1) at (0,4) {};
+\node[shape=circle,draw=black,inner sep=0pt, minimum size=4pt, label=right:$b_1$](b1) at (1.5,4){};
+\node[shape=circle,draw=black,inner sep=0pt, minimum size=4pt, label=left:$a_2$] (a2) at (0,2) {};
+\node[shape=circle,draw=black,inner sep=0pt, minimum size=4pt, label=right:$b_2$](b2) at (1.5,2){};
 
-\node[](a) at (5, 4) {$b_1 >_{a_1} b_2$};
-\node[](b) at (5,3.5) {$\implies a_ 2 >_{b_1} a_1$};
-\node[](c) at (5,3) {$\implies b_2 >_{a_2} b_1$};
-\node[](d) at (5,2.5) {$\implies a_1 >_{b_2} a_2.$};
+%% lines
+\path[-,line width=1pt, blue] (a1) edge  (b1);
+\path[-,line width=1pt,decoration={zigzag,segment length=3,amplitude=.5,post=lineto,post length=2pt}, red] (a1) edge[decorate] (b2);
+\path[-,line width=1pt, blue] (a2) edge (b2);
+\path[-,line width=1pt,decoration={zigzag,segment length=3,amplitude=.5,post=lineto,post length=2pt}, red] (a2) edge[decorate] (b1);
+
+%% special line
+\path[-,line width=5pt, blue, opacity=.15] (a1) edge  (b1);
+  
+%% arrows 
+\path[-,line width=1pt, decoration={markings, mark=at position .3 with {\arrow{latex}}}, blue] (a1) edge[decorate] (b1);
+
+%% second subfigure  
+  
+\begin{scope}[xshift=3.5cm]
+
+\node[](c) at (-1,3) {$\implies$};
+
+%% nodes
+
+\node[shape=circle,draw=black,inner sep=0pt, minimum size=4pt, label=left:$a_1$] (a1) at (0,4) {};
+\node[shape=circle,draw=black,inner sep=0pt, minimum size=4pt, label=right:$b_1$](b1) at (1.5,4){};
+\node[shape=circle,draw=black,inner sep=0pt, minimum size=4pt, label=left:$a_2$] (a2) at (0,2) {};
+\node[shape=circle,draw=black,inner sep=0pt, minimum size=4pt, label=right:$b_2$](b2) at (1.5,2){};
+
+%% lines
+\path[-,line width=1pt, blue] (a1) edge  (b1);
+\path[-,line width=1pt,decoration={zigzag,segment length=3,amplitude=.5,post=lineto,post length=2pt}, red] (a1) edge[decorate] (b2);
+\path[-,line width=1pt, blue] (a2) edge (b2);
+\path[-,line width=1pt,decoration={zigzag,segment length=3,amplitude=.5,post=lineto,post length=2pt}, red] (a2) edge[decorate] (b1);
+
+%% special line
+\path[-,line width=5pt,decoration={zigzag,segment length=3,amplitude=.5,post=lineto,post length=2pt}, red, opacity=.15] (a2) edge[decorate]  (b1);  
+  
+%% arrows 
+
+\path[-,line width=1pt, decoration={markings, mark=at position .25 with {\arrow{latex}}}, blue] (a1) edge[decorate] (b1);
+\path[-,line width=1pt, decoration={markings, mark=at position .2 with {\arrow{latex}}}, red] (b1) edge[decorate] (a2);
+\end{scope}
+
+
+
+%% third subfigure  
+  
+\begin{scope}[xshift=7cm]
+
+\node[](c) at (-1,3) {$\implies$};
+
+%% nodes
+
+\node[shape=circle,draw=black,inner sep=0pt, minimum size=4pt, label=left:$a_1$] (a1) at (0,4) {};
+\node[shape=circle,draw=black,inner sep=0pt, minimum size=4pt, label=right:$b_1$](b1) at (1.5,4){};
+\node[shape=circle,draw=black,inner sep=0pt, minimum size=4pt, label=left:$a_2$] (a2) at (0,2) {};
+\node[shape=circle,draw=black,inner sep=0pt, minimum size=4pt, label=right:$b_2$](b2) at (1.5,2){};
+
+%% lines
+\path[-,line width=1pt, blue] (a1) edge  (b1);
+\path[-,line width=1pt,decoration={zigzag,segment length=3,amplitude=.5,post=lineto,post length=2pt}, red] (a1) edge[decorate] (b2);
+\path[-,line width=1pt, blue] (a2) edge (b2);
+\path[-,line width=1pt,decoration={zigzag,segment length=3,amplitude=.5,post=lineto,post length=2pt}, red] (a2) edge[decorate] (b1);
+
+%% special line
+\path[-,line width=5pt, blue, opacity=.15] (a2) edge  (b2);
+  
+%% arrows 
+
+\path[-,line width=1pt, decoration={markings, mark=at position .25 with {\arrow{latex}}}, blue] (a1) edge[decorate] (b1);
+%\path[-,line width=1pt, decoration={markings, mark=at position .2 with {\arrow{latex}}}, red] (b2) edge[decorate] (a1);
+\path[-,line width=1pt, decoration={markings, mark=at position .25 with {\arrow{latex}}}, blue] (a2) edge[decorate] (b2);
+\path[-,line width=1pt, decoration={markings, mark=at position .2 with {\arrow{latex}}}, red] (b1) edge[decorate] (a2);
+\end{scope}
+
+%% forth subfigure  
+  
+\begin{scope}[xshift=10.5cm]
+
+\node[](c) at (-1,3) {$\implies$};
+
+%% nodes
+
+\node[shape=circle,draw=black,inner sep=0pt, minimum size=4pt, label=left:$a_1$] (a1) at (0,4) {};
+\node[shape=circle,draw=black,inner sep=0pt, minimum size=4pt, label=right:$b_1$](b1) at (1.5,4){};
+\node[shape=circle,draw=black,inner sep=0pt, minimum size=4pt, label=left:$a_2$] (a2) at (0,2) {};
+\node[shape=circle,draw=black,inner sep=0pt, minimum size=4pt, label=right:$b_2$](b2) at (1.5,2){};
+
+%% lines
+\path[-,line width=1pt, blue] (a1) edge  (b1);
+\path[-,line width=1pt,decoration={zigzag,segment length=3,amplitude=.5,post=lineto,post length=2pt}, red] (a1) edge[decorate] (b2);
+\path[-,line width=1pt, blue] (a2) edge (b2);
+\path[-,line width=1pt,decoration={zigzag,segment length=3,amplitude=.5,post=lineto,post length=2pt}, red] (a2) edge[decorate] (b1);
+
+  
+%% arrows 
+
+\path[-,line width=1pt, decoration={markings, mark=at position .25 with {\arrow{latex}}}, blue] (a1) edge[decorate] (b1);
+\path[-,line width=1pt, decoration={markings, mark=at position .2 with {\arrow{latex}}}, red] (b2) edge[decorate] (a1);
+\path[-,line width=1pt, decoration={markings, mark=at position .25 with {\arrow{latex}}}, blue] (a2) edge[decorate] (b2);
+\path[-,line width=1pt, decoration={markings, mark=at position .2 with {\arrow{latex}}}, red] (b1) edge[decorate] (a2);
+\end{scope}  
+
 
 \end{tikzpicture}
-\caption{Visualizing Lemma \ref{lemma:pref}. If any implication above doesn't hold, a blocking pair is found for the other matching.}
+\caption{Visualizing proof of Lemma \ref{lemma:pref}. Here, the connected component $C$ is a cycle on four nodes. The edges of $M_1$ are marked by straight lines, and the edges of $M_2$ by zigzags. For each node $w\in \{a_1,a_2,b_1,b_2\}$, the arrow at $w$ points towards the most prefered node in $\{M_1(w), M_2(w)\}$ with respect to $>_w$. }
+\label{fig:lemma_pref}
 \end{figure}
 
 \begin{lemma}\label{lemma:sym_stable} 
