@@ -187,16 +187,16 @@ for all $a \in V(C) \cap \cA$ and $v \in V(C) \cap \cB$.
 
 \begin{figure}[H]
 \centering
-\begin{tikzpicture}[yscale=.8]
+\begin{tikzpicture}[yscale=.9,xscale=1.2]
 
 %% first subfigure
 
 %% nodes
 
-\node[shape=circle,draw=black,inner sep=0pt, minimum size=4pt, label=left:$a_1$] (a1) at (0,4) {};
-\node[shape=circle,draw=black,inner sep=0pt, minimum size=4pt, label=right:$b_1$](b1) at (1.5,4){};
-\node[shape=circle,draw=black,inner sep=0pt, minimum size=4pt, label=left:$a_2$] (a2) at (0,2) {};
-\node[shape=circle,draw=black,inner sep=0pt, minimum size=4pt, label=right:$b_2$](b2) at (1.5,2){};
+\node[shape=circle,draw=black,inner sep=0pt, minimum size=4pt, label=left:$a$] (a1) at (0,4) {};
+\node[shape=circle,draw=black,inner sep=0pt, minimum size=4pt, label=right:$b$](b1) at (1.5,4){};
+\node[shape=circle,draw=black,inner sep=0pt, minimum size=4pt, label=left:$a_1$] (a2) at (0,2) {};
+\node[shape=circle,draw=black,inner sep=0pt, minimum size=4pt, label=right:$b_1$](b2) at (1.5,2){};
 
 %% lines
 \path[-,line width=1pt, blue] (a1) edge  (b1);
@@ -205,7 +205,7 @@ for all $a \in V(C) \cap \cA$ and $v \in V(C) \cap \cB$.
 \path[-,line width=1pt,decoration={zigzag,segment length=3,amplitude=.5,post=lineto,post length=2pt}, red] (a2) edge[decorate] (b1);
 
 %% special line
-\path[-,line width=5pt, blue, opacity=.15] (a1) edge  (b1);
+\path[-,line width=6pt, blue, opacity=.15] (a1) edge  (b1);
   
 %% arrows 
 \path[-,line width=1pt, decoration={markings, mark=at position .3 with {\arrow{latex}}}, blue] (a1) edge[decorate] (b1);
@@ -218,10 +218,10 @@ for all $a \in V(C) \cap \cA$ and $v \in V(C) \cap \cB$.
 
 %% nodes
 
-\node[shape=circle,draw=black,inner sep=0pt, minimum size=4pt, label=left:$a_1$] (a1) at (0,4) {};
-\node[shape=circle,draw=black,inner sep=0pt, minimum size=4pt, label=right:$b_1$](b1) at (1.5,4){};
-\node[shape=circle,draw=black,inner sep=0pt, minimum size=4pt, label=left:$a_2$] (a2) at (0,2) {};
-\node[shape=circle,draw=black,inner sep=0pt, minimum size=4pt, label=right:$b_2$](b2) at (1.5,2){};
+\node[shape=circle,draw=black,inner sep=0pt, minimum size=4pt, label=left:$a$] (a1) at (0,4) {};
+\node[shape=circle,draw=black,inner sep=0pt, minimum size=4pt, label=right:$b$](b1) at (1.5,4){};
+\node[shape=circle,draw=black,inner sep=0pt, minimum size=4pt, label=left:$a_1$] (a2) at (0,2) {};
+\node[shape=circle,draw=black,inner sep=0pt, minimum size=4pt, label=right:$b_1$](b2) at (1.5,2){};
 
 %% lines
 \path[-,line width=1pt, blue] (a1) edge  (b1);
@@ -230,7 +230,7 @@ for all $a \in V(C) \cap \cA$ and $v \in V(C) \cap \cB$.
 \path[-,line width=1pt,decoration={zigzag,segment length=3,amplitude=.5,post=lineto,post length=2pt}, red] (a2) edge[decorate] (b1);
 
 %% special line
-\path[-,line width=5pt,decoration={zigzag,segment length=3,amplitude=.5,post=lineto,post length=2pt}, red, opacity=.15] (a2) edge[decorate]  (b1);  
+\path[-,line width=6pt,decoration={zigzag,segment length=3,amplitude=.5,post=lineto,post length=2pt}, red, opacity=.15] (a2) edge[decorate]  (b1);  
   
 %% arrows 
 
@@ -248,10 +248,10 @@ for all $a \in V(C) \cap \cA$ and $v \in V(C) \cap \cB$.
 
 %% nodes
 
-\node[shape=circle,draw=black,inner sep=0pt, minimum size=4pt, label=left:$a_1$] (a1) at (0,4) {};
-\node[shape=circle,draw=black,inner sep=0pt, minimum size=4pt, label=right:$b_1$](b1) at (1.5,4){};
-\node[shape=circle,draw=black,inner sep=0pt, minimum size=4pt, label=left:$a_2$] (a2) at (0,2) {};
-\node[shape=circle,draw=black,inner sep=0pt, minimum size=4pt, label=right:$b_2$](b2) at (1.5,2){};
+\node[shape=circle,draw=black,inner sep=0pt, minimum size=4pt, label=left:$a$] (a1) at (0,4) {};
+\node[shape=circle,draw=black,inner sep=0pt, minimum size=4pt, label=right:$b$](b1) at (1.5,4){};
+\node[shape=circle,draw=black,inner sep=0pt, minimum size=4pt, label=left:$a_1$] (a2) at (0,2) {};
+\node[shape=circle,draw=black,inner sep=0pt, minimum size=4pt, label=right:$b_1$](b2) at (1.5,2){};
 
 %% lines
 \path[-,line width=1pt, blue] (a1) edge  (b1);
@@ -260,7 +260,7 @@ for all $a \in V(C) \cap \cA$ and $v \in V(C) \cap \cB$.
 \path[-,line width=1pt,decoration={zigzag,segment length=3,amplitude=.5,post=lineto,post length=2pt}, red] (a2) edge[decorate] (b1);
 
 %% special line
-\path[-,line width=5pt, blue, opacity=.15] (a2) edge  (b2);
+\path[-,line width=6pt, blue, opacity=.15] (a2) edge  (b2);
   
 %% arrows 
 
@@ -278,10 +278,10 @@ for all $a \in V(C) \cap \cA$ and $v \in V(C) \cap \cB$.
 
 %% nodes
 
-\node[shape=circle,draw=black,inner sep=0pt, minimum size=4pt, label=left:$a_1$] (a1) at (0,4) {};
-\node[shape=circle,draw=black,inner sep=0pt, minimum size=4pt, label=right:$b_1$](b1) at (1.5,4){};
-\node[shape=circle,draw=black,inner sep=0pt, minimum size=4pt, label=left:$a_2$] (a2) at (0,2) {};
-\node[shape=circle,draw=black,inner sep=0pt, minimum size=4pt, label=right:$b_2$](b2) at (1.5,2){};
+\node[shape=circle,draw=black,inner sep=0pt, minimum size=4pt, label=left:$a$] (a1) at (0,4) {};
+\node[shape=circle,draw=black,inner sep=0pt, minimum size=4pt, label=right:$b$](b1) at (1.5,4){};
+\node[shape=circle,draw=black,inner sep=0pt, minimum size=4pt, label=left:$a_1$] (a2) at (0,2) {};
+\node[shape=circle,draw=black,inner sep=0pt, minimum size=4pt, label=right:$b_1$](b2) at (1.5,2){};
 
 %% lines
 \path[-,line width=1pt, blue] (a1) edge  (b1);
@@ -300,7 +300,7 @@ for all $a \in V(C) \cap \cA$ and $v \in V(C) \cap \cB$.
 
 
 \end{tikzpicture}
-\caption{Visualizing the proof of Lemma \ref{lemma:pref}. Here, the connected component $C$ is a cycle on four nodes. The edges of $M_1$ are marked by straight lines, and the edges of $M_2$ by zigzags. For each node $w\in \{a_1,a_2,b_1,b_2\}$, the arrow at $w$ points towards the most prefered node in $\{M_1(w), M_2(w)\}$ with respect to $>_w$. }
+\caption{Visualizing the proof of Lemma \ref{lemma:pref}. Here, the connected component $C$ is a cycle on four nodes. The edges of $M_1$ are marked by straight blue lines, and the edges of $M_2$ by red zigzags. For each node $w\in \{a,b,a_1,b_1\}$, the arrow at $w$ points towards the most prefered node in $\{M_1(w), M_2(w)\}$ with respect to $>_w$. }
 \label{fig:lemma_pref}
 \end{figure}
 
@@ -318,7 +318,7 @@ for all $a \in V(C) \cap \cA$ and $v \in V(C) \cap \cB$.
   For contradiction assume
   that one of the matchings $M'_1$ and $M'_2$ is not stable; w.l.o.g. assume that
   $M'_1$ does not satisfy~\eqref{eq:stability_def} for some edge
-  $ab\in E$ with $a\in\mathcal{A}$ and $b\in\mathcal{B}$.
+  $ab\in E$ with $a\in\mathcal{A}$ and $b\in\mathcal{B}$. For visualization of the proof see Figure~\ref{fig:sym_stable}.
 
   Since $M_1$ and $M_2$ are stable, $a$ and $b$ cannot both lie in the
   same connected component of $J_1 \cup J_2$. Suppose first that $a \in
@@ -335,54 +335,69 @@ for all $a \in V(C) \cap \cA$ and $v \in V(C) \cap \cB$.
 \begin{figure}[H]
 \centering
 \begin{tikzpicture}
-\node[] (J1) at (0,6) {$J_1$:};
 
-\node[shape=circle,draw=black] (1) at (0,4) {$a_1$};
-\node[shape=circle,draw=black](2) at (2,4){$b_1$};
-\node[shape=circle,draw=black] (3) at (0,2) {$a_2$};
-\node[shape=circle,draw=black](4) at (2,2){$b_2$};
 
-\path[-] (1) edge  (2);
-\path[-,line width=2pt,decoration={zigzag,segment length=4,amplitude=.9,post=lineto,post length=2pt}] (1) edge[decorate] (4);
-\path[-] (3) edge (4);
-\path[-,line width=2pt,decoration={zigzag,segment length=4,amplitude=.9,post=lineto,post length=2pt}] (3) edge[decorate] (2);
+% nodes
 
-\node[] (J2) at (5,6) {$J_2$:};
+\node[shape=circle,draw=black,inner sep=0pt, minimum size=4pt, label=left:$a_1$] (a1) at (0,4) {};
+\node[shape=circle,draw=black,inner sep=0pt, minimum size=4pt, label=right:$b_1$](b1) at (2,4){};
+\node[shape=circle,draw=black,inner sep=0pt, minimum size=4pt, label=left:$a_2$] (a2) at (0,2) {};
+\node[shape=circle,draw=black,inner sep=0pt, minimum size=4pt, label=right:$b$](b2) at (2,2){};
+\node[shape=circle,draw=black,inner sep=0pt, minimum size=4pt, label=left:$a$] (a3) at (5,4) {};
+\node[shape=circle,draw=black,inner sep=0pt, minimum size=4pt, label=right:$b_3$](b3) at (7,4){};
+\node[shape=circle,draw=black,inner sep=0pt, minimum size=4pt, label=left:$a_4$] (a4) at (5,2) {};
+\node[shape=circle,draw=black,inner sep=0pt, minimum size=4pt, label=right:$b_4$](b4) at (7,2){};
 
-\node[shape=circle,draw=black] (5) at (5,4) {$a_3$};
-\node[shape=circle,draw=black](6) at (7,4){$b_3$};
-\node[shape=circle,draw=black] (7) at (5,2) {$a_4$};
-\node[shape=circle,draw=black](8) at (7,2){$b_4$};
+%% lines
+\path[-,line width=1pt, blue] (a1) edge  (b1);
+\path[-,line width=1pt,decoration={zigzag,segment length=3,amplitude=.5,post=lineto,post length=2pt}, red] (a1) edge[decorate] (b2);
+\path[-,line width=1pt, blue] (a2) edge (b2);
+\path[-,line width=1pt,decoration={zigzag,segment length=3,amplitude=.5,post=lineto,post length=2pt}, red] (a2) edge[decorate] (b1);
 
-\path[-,line width=2pt] (5) edge  (6);
-\path[-,decoration={zigzag,segment length=4,amplitude=.9,post=lineto,post length=2pt}] (5) edge[decorate] (8);
-\path[-,line width=2pt] (7) edge (8);
-\path[-,decoration={zigzag,segment length=4,amplitude=.9,post=lineto,post length=2pt}] (7) edge[decorate] (6);
+\path[-,line width=1pt, blue] (a3) edge  (b3);
+\path[-,line width=1pt,decoration={zigzag,segment length=3,amplitude=.5,post=lineto,post length=2pt}, red] (a3) edge[decorate] (b4);
+\path[-,line width=1pt, blue] (a4) edge (b4);
+\path[-,line width=1pt,decoration={zigzag,segment length=3,amplitude=.5,post=lineto,post length=2pt}, red] (a4) edge[decorate] (b3);
+  
+%% arrows 
 
-\node[](M1) at (9,3.5) {$M_1$ edges:};
-\node[](m11) at (10,3.5){};
-\node[](m12) at (11,3.5){};
-\path[-](m11) edge(m12);
-\node[](M2) at (9,3) {$M_2$ edges:};
-\node[](m21) at (10,3){};
-\node[](m22) at (11,3){};
-\path[-,decoration={zigzag,segment length=4,amplitude=.9,post=lineto,post length=2pt}](m21) edge[decorate](m22);
-\node[](m1j1) at (9,2.5){$M_1\triangle J_1$ edges:};
-\node[](bolded) at (11,2.5){$\textbf{bolded}$};
+\path[-,line width=1pt, decoration={markings, mark=at position .25 with {\arrow{latex}}}, blue] (a1) edge[decorate] (b1);
+\path[-,line width=1pt, decoration={markings, mark=at position .2 with {\arrow{latex}}}, red] (b2) edge[decorate] (a1);
+\path[-,line width=1pt, decoration={markings, mark=at position .25 with {\arrow{latex}}}, blue] (a2) edge[decorate] (b2);
+\path[-,line width=1pt, decoration={markings, mark=at position .2 with {\arrow{latex}}}, red] (b1) edge[decorate] (a2);
 
-\node[]() at (0, 5) {$b_1 >_{a_1} b_2$};
-\node[]() at (2, 5) {$a_2 >_{b_1} a_1$};
-\node[]() at (0, 1) {$b_2 >_{a_2} b_1$};
-\node[]() at (2,1) {$a_1 >_{b_2} a_2$};
+\path[-,line width=1pt, decoration={markings, mark=at position .25 with {\arrow{latex}}}, blue] (b3) edge[decorate] (a3);
+\path[-,line width=1pt, decoration={markings, mark=at position .2 with {\arrow{latex}}}, red] (a3) edge[decorate] (b4);
+\path[-,line width=1pt, decoration={markings, mark=at position .25 with {\arrow{latex}}}, blue] (b4) edge[decorate] (a4);
+\path[-,line width=1pt, decoration={markings, mark=at position .2 with {\arrow{latex}}}, red] (a4) edge[decorate] (b3);
 
-\node[]() at (5, 5) {$b_4 >_{a_3} b_3$};
-\node[]() at (7, 5) {$a_3 >_{b_3} a_4$};
-\node[]() at (5, 1) {$b_3 >_{a_4} b_4$};
-\node[]() at (7,1) {$a_4 >_{b_4} a_3$};
+%% symmetric difference M_1 and J_1
 
-\path[dashed](4) edge (5);
+
+
+%% special lines
+\path[-,line width=2pt,  opacity=.15] (b2) edge  (a3);
+
+
+\path[-,line width=6pt,  opacity=.15,decoration={zigzag,segment length=3,amplitude=.5,post=lineto,post length=2pt}, red] (a1) edge[decorate] (b2);
+\path[-,line width=6pt,  opacity=.15,decoration={zigzag,segment length=3,amplitude=.5,post=lineto,post length=2pt}, red] (a2) edge[decorate] (b1);
+\path[-,line width=6pt,  opacity=.15, blue] (a3) edge  (b3);
+\path[-,line width=6pt,  opacity=.15, blue] (a4) edge (b4);
+
+
+%% J_1, J_2
+\draw[very thick, opacity=0.2, dashed, rounded corners=20pt] (-.7,1.3)rectangle (2.7,4.7);
+\draw[very thick, opacity=0.2, dashed, rounded corners=20pt] (4.3,1.3)rectangle (7.7,4.7);
+\node[] (J1) at (-1.3,4) {$J_1$};
+\node[] (J2) at (8.3,4) {$J_2$};
+
+
+
 \end{tikzpicture}
-\caption{Visualizing Lemma \ref{lemma:sym_stable}. If $b_2a_3$ blocks $M_1 \triangle J_1$ then $b_2a_3$ blocks $M_1$.}
+\caption{Visualizing the proof of Lemma \ref{lemma:sym_stable}.  Here, both $J_1$ and $J_2$ consist of a cycle on four nodes. The edges of $M_1$ are marked by blue straight lines, and the edges of $M_2$ by red zigzags; the edges of $M_1\triangle J_1$ are the highlighted edges of $M_1$ and $M_2$. For each node $w$, the arrow at $w$ points towards the most prefered node in $\{M_1(w), M_2(w)\}$ with respect to $>_w$.
+The figure illustrates the case, when the matching $M_1\triangle J_1$ violates~\eqref{eq:stability_def} for the edge $\{a,b\}$ with $a\in V(J_2)$
+  and $b\in V(J_1)$. In this case, $M_1$ violates~\eqref{eq:stability_def} for the edge $\{a,b\}$ as well, contradiction.}
+\label{fig:sym_stable}
 \end{figure}
 
 \section{Stable Matching Polytope}
