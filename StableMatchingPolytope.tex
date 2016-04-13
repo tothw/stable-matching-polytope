@@ -100,12 +100,6 @@
 Stable Matching\sep Polytope\sep Extreme Points
 \end{keyword}
 \end{frontmatter}
-{\color{red}
-\section*{TODO}
-\begin{enumerate}
-	\item Cite Ratier for section 3 re: edges in polytope
-\end{enumerate}
-}
 
 \section{Introduction}
 
@@ -113,18 +107,20 @@ In an instance of the {\em stable marriage} problem, we are given a
 bipartite graph $G=(\cA \cup \cB, E)$ where $\cA$ and $\cB$
 traditionally represent sets of women and men, respectively. An edge
 $ab \in E$ corresponds to an {\em acceptable} pair $a$ and $b$ of man
-and woman. In the following, we let $N(u) = \{ v \,:\, uv \in E \}$ be
+and woman. In the following, we let $N(u): = \{ v \,:\, uv \in E \}$ be
 the set of neighbours of $u$ in $G$. Each vertex
-$u \in V=\cA \cup \cB$ specifies a complete {\em preference order}
+$u \in V:=\cA \cup \cB$ specifies a complete {\em preference order}
 $>_u$ over its neighbours where vertex $u$ prefers neighbour $v_1$
-over $v_2$ iff $v_1 >_u v_2$.  In their seminal paper
+over $v_2$ iff $v_1 >_u v_2$. For ease of notation, we will think of $>_v$ as a total
+ordering on $N(v) \cup \{\varnothing\}$ where 
+$\varnothing$ is the least preferred element of each vertex $v \in V$. In their seminal paper
 \cite{gale1962college}, Gale and Shapley introduced the above problem,
 and provided a constructive proof of existence of so called {\em
   stable} matchings. A matching is a collection $M$ of edges in $E$
 such that each vertex is incident to at most one edge in $M$. $M$ is
-stable if, for all $uv \not\in M$, $M(u) >_u v$ or $M(v) >_v u$ where
+stable if, for every edge $uv \not\in M$, $M(u) >_u v$ or $M(v) >_v u$ where
 $M(u)$ is the vertex matched to $u$ in $M$ if that exists, and
-$M(u)=\varnothing$, otherwise.
+$M(u)=\varnothing$, otherwise. 
 
 In this paper, we focus on polyhedral characterizations of the set of
 incidence vectors of stable matchings.  Vande Vate first provided such
@@ -140,25 +136,22 @@ of Rothblum's formulation. Our proof is inspired by the technique of
 monograph~\cite{lau2011iterative}. Our arguments are elementary and
 rely solely on some well-known results on the symmetric difference
 of stable matchings as well as some knowledge of the local structure
-of a variable in our formulation to achieve the desired result.
+of extreme points in our formulation to achieve the desired result.
 
 \section{Stable matchings: Preliminaries}
 
 We briefly review a couple of well-known facts on stable matchings. 
 For each edge $uv$ in $E$, we let
 $\delta^{>u}(v):=\{ \{v,w\}\in E: w >_v u \}$ to be the set of edges
-incident to $v$ those of its neighbours that are preferred to $u$. 
-For $v \in V$ let $N_{\max}(v)$ denote its highest-ranked neighbour. 
-For ease of notation, we will from now on think of $>_v$ as a total
-ordering on $N(v) \cup \varnothing$ where 
-$\varnothing$ is the lowest-ranked element of each vertex $v \in V$. 
+incident to $v$ and those of its neighbours that are preferred to $u$. 
+For $v \in V$ let $N_{\max}(v)$ denote its most preferred neighbour.  
 A matching $M$ in $G$ is now easily seen to be stable if 
 \begin{equation}\label{eq:stability_def}
 		M \, \cap \, \big(\delta^{>u}(v) \cup \delta^{>v}(u) \cup  \{e\} \big)\neq\varnothing\,,
 \end{equation}
 for all $uv \in E$. The following lemmas study the connected components of
-the {\em symmetric difference} $M_1\triangle M_2:=M_1\setminus M_2
-\cup M_2 \setminus M_1$ of 
+the {\em symmetric difference} $M_1\triangle M_2:=(M_1\setminus M_2)
+\cup (M_2 \setminus M_1)$ of 
 stable matchings $M_1$ and $M_2$. Here, $V(C)$ and $E(C)$ denote
 the set of vertices and edges, respectively, of a graph $C$.
 
@@ -455,7 +448,7 @@ M_2\cap\big(\delta^{>a}(b)\cup \delta^{>b}(a)\big)=\varnothing
 \end{proof}
 
 \begin{note}
-Alternatively Corollary \ref{cor:edge} can be seen without Lemma \ref{lemma:edge} via Ratier's characterization of edges of the stable matching polytope \cite{ratier1996stable}. Since $J_1$ and $J_2$ are both non-empty, not all $a \in A$ agree on their preference between $M_1$ and $M_2$. That is to say, $M_1$ and $M_2$ are not comparable and by Ratier's theory do not share an edge in the stable matching polytope.
+Alternatively Corollary \ref{cor:edge} can be seen without Lemma \ref{lemma:edge} via Ratier's characterization of edges of the stable matching polytope \cite{ratier1996stable}. Since $J_1$ and $J_2$ are both non-empty, not all $a \in \mathcal{A}$ agree on their preference between $M_1$ and $M_2$. That is to say, $M_1$ and $M_2$ are not comparable and by \cite{ratier1996stable} do not share an edge in the stable matching polytope.
 \end{note}
 
 \section{Linear Description}
@@ -465,7 +458,7 @@ following linear constraints
   x(\delta(v)) \leq 1\,,\quad \forall v \in V\qquad \text{and} \qquad x_e \geq 0\,,\quad \forall e \in E\,,\label{eq:lin_descr_match}\\
   x(\delta^{>a}(b))+ x(\delta^{>b}(a)) + x_{ab} \geq 1\,, \quad \forall ab \in E \label{eq:lin_descr_stab}
 \end{align}
-where $x(J) = \sum_{e \in J} x_e$ for any $J \subseteq E$.
+where $x(J) := \sum_{e \in J} x_e$ for any $J \subseteq E$.
 
 Clearly, $P(G)\subseteq Q(G)$ because for every stable matching $M$ in
 $G$ the point $x:=\chi(M)$ satisfies~\eqref{eq:lin_descr_match} and
@@ -498,7 +491,7 @@ The constraints $x(\delta(v))=1$, $v\in V$ are linearly dependent, in particular
 $$
 	1\le x(\delta^{>a}(b))+ x(\delta^{>b}(a)) + x_{ab}=x(\delta^{\ge b}(a)) \le x(\delta(a)) \le 1\,,
 $$
-showing that $\delta^{< b}(a)=\varnothing$ and hence $E_x\setminus e$, $V_x\cup \{a\}$ also define the vertex $x$. Analogously, we can show that if $b\in V_x$  and $a=N_{\min}(b)$ then $e:=ab\not\in E_x$. Moreover, notice that $N_{\min}(v)\neq N_{\max}(v)$ for $v\in V_x$ since no coordinate of $x$ equals $1$. Thus, 
+showing that $\delta^{< b}(a)=\varnothing$ and hence $E_x\setminus e$, $V_x\cup \{a\}$ also define the vertex $x$. Analogously, we can show that if $b\in V_x$  and $a=N_{\min}(b)$ then $e:=ab\not\in E_x$. Moreover, notice that $N_{\min}(v)\neq N_{\max}(v)$ for $v\in V_x$ since no coordinate of $x$ equals~$1$. Thus, 
 \[
 	|E_x|=\frac{1}{2}\sum_{v\in V} |\delta(v)\cap E_x|\le \frac{1}{2}\sum_{v\in V_x} (|\delta(v)|-2)+\frac{1}{2}\sum_{v\in V\setminus V_x} (|\delta(v)|-1)= |E|-|V_x|-\frac{1}{2}|V\setminus V_x|\,,
 \]
