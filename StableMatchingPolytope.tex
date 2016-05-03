@@ -138,7 +138,9 @@ rely solely on some well-known results on the symmetric difference
 of stable matchings as well as some knowledge of the local structure
 of extreme points in our formulation to achieve the desired result.
 
-\section{Stable matchings: Preliminaries}
+Necessary background from the literature will be covered in the section to follow. The main result, a one-page proof, will be given in section \ref{section:theorem}.
+
+\section{Stable Matchings Preliminaries}
 
 We briefly review a couple of well-known facts on stable matchings. 
 For each edge $uv$ in $E$, we let
@@ -308,7 +310,7 @@ for all $a \in V(C) \cap \cA$ and $v \in V(C) \cap \cB$.
   $M'_2=M_1\triangle J_2$ are stable matchings in $G$.
 \end{lemma}
 
-\begin{note}If one is familiar with the well-known lattice structure of stable matchings (see Conway's result in \cite{roth1992two}) then Lemma \ref{lemma:sym_stable} immediately follows from seeing $M_1 \triangle J_1$ assigns each $b \in \mathcal{B}$ their preferred match between $M_1$ and $M_2$, and seeing $M_1 \triangle J_2$ assigns each $a \in \mathcal{A}$ theirs. Ignoring the lattice structure we provide a short elementary proof below.
+\begin{note}Lemma \ref{lemma:sym_stable} is equivalent to an observation made by Conway on the way to the well-known lattice structure of stable matchings (see Conway's result in \cite{roth1992two}). In the interest of self-containment we provide a short elementary proof below.
 \end{note}
 \begin{proof}
   For contradiction assume
@@ -396,15 +398,15 @@ The figure illustrates the case, when the matching $M_1\triangle J_1$ violates~\
 \label{fig:sym_stable}
 \end{figure}
 
-\section{Stable Matching Polytope}
+%\section{Stable Matching Polytope}
 
-Let us define the \emph{stable matching polytope} $P(G)\subseteq\R^E$ for graph $G$ as follows
+\begin{definition}Let us define the \emph{stable matching polytope} $P(G)\subseteq\R^E$ for graph $G$ as follows
 $$
 	P(G):=\conv\{\chi(M)\in\R^E: M \text{ is a stable matching in } G\}\,.
 $$
 By~\cite{gale1962college}, $P(G)$ is a nonempty polytope because every
 graph $G$ has a stable matching.
-
+\end{definition}
 Clearly, the vertices of $P(G)$ are in one-to-one correspondence with
 stable matchings in $G$. Moreover, Lemma~\ref{lemma:sym_stable} helps
 to understand what pairs of stable matchings in $G$ do not correspond
@@ -451,7 +453,7 @@ M_2\cap\big(\delta^{>a}(b)\cup \delta^{>b}(a)\big)=\varnothing
 Alternatively Corollary \ref{cor:edge} can be seen without Lemma \ref{lemma:edge} via Ratier's characterization of edges of the stable matching polytope \cite{ratier1996stable}. Since $J_1$ and $J_2$ are both non-empty, not all $a \in \mathcal{A}$ agree on their preference between $M_1$ and $M_2$. That is to say, $M_1$ and $M_2$ are not comparable and by \cite{ratier1996stable} do not share an edge in the stable matching polytope.
 \end{note}
 
-\section{Linear Description}
+\section{Linear Description}\label{section:theorem}
 Let us define $Q(G)\subseteq\R^E$ to be the polytope described by the
 following linear constraints
 \begin{align}
