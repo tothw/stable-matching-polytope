@@ -108,18 +108,18 @@ bipartite graph $G=(\cA \cup \cB, E)$ where $\cA$ and $\cB$
 traditionally represent sets of women and men, respectively. An edge
 $ab \in E$ corresponds to an {\em acceptable} pair $a$ and $b$ of man
 and woman. In the following, we let $N(u): = \{ v \,:\, uv \in E \}$ be
-the set of neighbours of $u$ in $G$. Each vertex
+the set of neighbours of $u$ in $G$. Each node
 $u \in V:=\cA \cup \cB$ specifies a complete {\em preference order}
-$>_u$ over its neighbours where vertex $u$ prefers neighbour $v_1$
+$>_u$ over its neighbours where node $u$ prefers neighbour $v_1$
 over $v_2$ iff $v_1 >_u v_2$. For ease of notation, we will think of $>_u$ as a total
 ordering on $N(u) \cup \{\varnothing\}$ where 
-$\varnothing$ is the least preferred element of each vertex $u \in V$. In their seminal paper
+$\varnothing$ is the least preferred element of each node $u \in V$. In their seminal paper
 \cite{gale1962college}, Gale and Shapley introduced the above problem,
 and provided a constructive proof of existence of so called {\em
   stable} matchings. A matching is a collection $M$ of edges in $E$
-such that each vertex is incident to at most one edge in $M$. $M$ is
+such that each node is incident to at most one edge in $M$. $M$ is
 stable if, for every edge $uv \not\in M$, $M(u) >_u v$ or $M(v) >_v u$ where
-$M(u)$ is the vertex matched to $u$ in $M$ if that exists, and
+$M(u)$ is the node matched to $u$ in $M$ if that exists, and
 $M(u):=\varnothing$, otherwise. 
 
 In this paper, we focus on polyhedral characterizations of the set of
@@ -155,7 +155,7 @@ for all $e=uv \in E$. The following lemmas study the connected components of
 the {\em symmetric difference} $M_1\triangle M_2:=(M_1\setminus M_2)
 \cup (M_2 \setminus M_1)$ of 
 stable matchings $M_1$ and $M_2$. Here, $V(C)$ and $E(C)$ denote
-the set of vertices and edges, respectively, of a graph $C$.
+the set of nodes and edges, respectively, of a graph $C$.
 
 \begin{lemma}\label{lemma:pref}
 Let $M_1$ and $M_2$ be two stable matchings in $G$ and let $C$ be a
@@ -164,7 +164,7 @@ $\{i,j\}=\{1,2\}$, we have
 \begin{equation}\label{eq:pref}
 	M_i(a)>_a M_j(a) ~~\text{and} ~~  M_j(b)>_b M_i(b)\,,\,
 \end{equation}
-for all $a \in V(C) \cap \cA$ and $v \in V(C) \cap \cB$.
+for all $a \in V(C) \cap \cA$ and $b \in V(C) \cap \cB$.
 \end{lemma}
 \begin{proof}
   Since $M_1$ and $M_2$ are matchings, $C$ is a path or a cycle. Let
@@ -304,7 +304,7 @@ The next Lemma is equivalent to Theorem 2.16 in \cite{roth1992two}. In the inter
   Let $M_1$ and $M_2$ be two stable matchings in $G$. Let $J_1$ be
   those connected components of $M_1 \triangle M_2$ 
   that satisfy
-  \eqref{eq:pref} for $i=1$ and $j=2$ (i.e., $\cA$ vertices prefer
+  \eqref{eq:pref} for $i=1$ and $j=2$ (i.e., $\cA$ nodes prefer
   $M_1$ edges); let $J_2$ be all
   remaining connected components of $M_1 \triangle M_2$. 
   Then both $M'_1 = M_1\triangle J_1$ and
