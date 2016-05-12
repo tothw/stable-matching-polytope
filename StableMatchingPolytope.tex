@@ -111,16 +111,16 @@ and woman. In the following, we let $N(u): = \{ v \,:\, uv \in E \}$ be
 the set of neighbours of $u$ in $G$. Each vertex
 $u \in V:=\cA \cup \cB$ specifies a complete {\em preference order}
 $>_u$ over its neighbours where vertex $u$ prefers neighbour $v_1$
-over $v_2$ iff $v_1 >_u v_2$. For ease of notation, we will think of $>_v$ as a total
-ordering on $N(v) \cup \{\varnothing\}$ where 
-$\varnothing$ is the least preferred element of each vertex $v \in V$. In their seminal paper
+over $v_2$ iff $v_1 >_u v_2$. For ease of notation, we will think of $>_u$ as a total
+ordering on $N(u) \cup \{\varnothing\}$ where 
+$\varnothing$ is the least preferred element of each vertex $u \in V$. In their seminal paper
 \cite{gale1962college}, Gale and Shapley introduced the above problem,
 and provided a constructive proof of existence of so called {\em
   stable} matchings. A matching is a collection $M$ of edges in $E$
 such that each vertex is incident to at most one edge in $M$. $M$ is
 stable if, for every edge $uv \not\in M$, $M(u) >_u v$ or $M(v) >_v u$ where
 $M(u)$ is the vertex matched to $u$ in $M$ if that exists, and
-$M(u)=\varnothing$, otherwise. 
+$M(u):=\varnothing$, otherwise. 
 
 In this paper, we focus on polyhedral characterizations of the set of
 incidence vectors of stable matchings.  Vande Vate first provided such
@@ -151,7 +151,7 @@ A matching $M$ in $G$ is now easily seen to be stable if
 \begin{equation}\label{eq:stability_def}
 		M \, \cap \, \big(\delta^{>u}(v) \cup \delta^{>v}(u) \cup  \{e\} \big)\neq\varnothing\,,
 \end{equation}
-for all $uv \in E$. The following lemmas study the connected components of
+for all $e=uv \in E$. The following lemmas study the connected components of
 the {\em symmetric difference} $M_1\triangle M_2:=(M_1\setminus M_2)
 \cup (M_2 \setminus M_1)$ of 
 stable matchings $M_1$ and $M_2$. Here, $V(C)$ and $E(C)$ denote
@@ -299,6 +299,7 @@ for all $a \in V(C) \cap \cA$ and $v \in V(C) \cap \cB$.
 \label{fig:lemma_pref}
 \end{figure}
 
+The next Lemma is equivalent to Theorem 2.16 in \cite{roth1992two}. In the interest of self-containment we provide a short elementary proof below.
 \begin{lemma}\label{lemma:sym_stable} 
   Let $M_1$ and $M_2$ be two stable matchings in $G$. Let $J_1$ be
   those connected components of $M_1 \triangle M_2$ 
@@ -310,8 +311,7 @@ for all $a \in V(C) \cap \cA$ and $v \in V(C) \cap \cB$.
   $M'_2=M_1\triangle J_2$ are stable matchings in $G$.
 \end{lemma}
 
-\begin{note}Lemma \ref{lemma:sym_stable} is equivalent to an observation made by Conway on the way to the well-known lattice structure of stable matchings (see Conway's result in \cite{roth1992two}). In the interest of self-containment we provide a short elementary proof below.
-\end{note}
+
 \begin{proof}
   For contradiction assume
   that one of the matchings $M'_1$ and $M'_2$ is not stable; w.l.o.g. assume that
@@ -432,6 +432,7 @@ to edges of $P(G)$.
   of the edge between $M_1$ and $M_2$; a contradiction. 
 \end{proof}
 
+The next Corollary \ref{cor:edge} can be obtained from Ratier's characterization of edges of the stable matching polytope~\cite{ratier1996stable}.
 
 \begin{corollary}\label{cor:edge}
 Let $M_1$ and $M_2$ be two stable matchings in $G$ such that
@@ -449,9 +450,7 @@ M_2\cap\big(\delta^{>a}(b)\cup \delta^{>b}(a)\big)=\varnothing
   \ref{lemma:edge} completes the proof of the corollary.
 \end{proof}
 
-\begin{note}
-Alternatively Corollary \ref{cor:edge} can be seen without Lemma \ref{lemma:edge} via Ratier's characterization of edges of the stable matching polytope \cite{ratier1996stable}. Since $J_1$ and $J_2$ are both non-empty, not all $a \in \mathcal{A}$ agree on their preference between $M_1$ and $M_2$. That is to say, $M_1$ and $M_2$ are not comparable and by \cite{ratier1996stable} do not share an edge in the stable matching polytope.
-\end{note}
+
 
 \section{Linear Description}\label{section:theorem}
 Let us define $Q(G)\subseteq\R^E$ to be the polytope described by the
@@ -504,19 +503,18 @@ which implies $|E_x|+|V_x|< |E|$, contradiction.
 Now let us assume that $G$ is a graph with the minimum number of edges such that $Q(G)$ is not an integral polytope. Let $x$ be a non-integral vertex of $Q(G)$.
 
 Case $x_{ab}=0$ for some $a\in \mathcal{A}$, $b\in\mathcal{B}$ and
-$e:=ab\in E$. In this case, let $x'$ be obtained from $x$ by dropping
-the coordinate corresponding to $ab$, and let $G'$ be the graph with
+$e:=ab\in E$. In this case, let $P'$ and $x'$ be obtained from $P\cap\{x\in\R^E: x_{ab}=0\}$ and $x$ by dropping
+the coordinate corresponding to $ab$. Then,
+$x'$ is a vertex of the polytope $P'$. Let $G'$ be the graph with
 $V(G')=V$ and $E(G') = E \setminus \{e\}$. Define $H'$ to be the
 hyperplane
-$\{x\in \R^{E(G')}: x(\delta^{>a}(b))+ x(\delta^{>b}(a))=1\}$. Then,
-$x'$ is a vertex of the polytope $P':=P(G')\cap H'$.  But every vertex
+$\{x\in \R^{E(G')}: x(\delta^{>a}(b))+ x(\delta^{>b}(a))=1\}$.  Then every vertex
 of $P'$ is either a vertex of $P(G')$ or the intersection of an edge
 of $P(G')$ with the hyperplane $H'$. Since vertices of $P(G')$ are
 integral by the minimal choice of graph $G$, it remains to consider
 vertices at the intersection of $H'$ and an edge of $P(G')$. Such an
-edge would be defined by stable matchings $M_1$ and $M_2$ that are
-easily checked to satisfy \eqref{eq:edge} for the given edge $ab$.
-Corollary \ref{cor:edge} therefore readily implies that $P(G')$ cannot
+edge would be defined by stable matchings $M_1$ and $M_2$ so that w.l.o.g. $|M_1 \cap \big(\delta^{>a}(b)\cup\delta^{>b}(a)\big)|=2$ and $|M_2 \cap \big(\delta^{>a}(b)\cup\delta^{>b}(a)\big)|=0$. Therefore, $M_1$ and $M_2$ satisfy \eqref{eq:edge} for the given edge $ab$. So
+Corollary \ref{cor:edge} readily implies that $P(G')$ cannot
 have an edge connecting $M_1$ and $M_2$.
 
 Case $x_{ab}=1$ for some $a\in \mathcal{A}$, $b\in\mathcal{B}$. Let
