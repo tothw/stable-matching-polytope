@@ -1,0 +1,181 @@
+\documentclass[11pt]{article}
+\usepackage{graphicx}
+\usepackage{amssymb}
+
+
+\begin{document}
+
+Dear Reviewer, dear Editor,
+
+\bigskip
+
+we would like to thank the reviewer for her/his careful reading and thoughtful comments on the submitted paper. 
+
+Below we address each of the comments in details.
+
+\begin{enumerate}
+	\item \textbf{``The word ``locality" used in the title is not explained in the paper. The introduction mentions the technique of iterative rounding, but the word ``locality" should explicitly appear to justify its presence in the title, as some readers of this paper may not be familiar with iterative rounding and thus may not understand the meaning of ``locality" in this context."}
+	
+	\smallskip
+	
+	We agree with the reviewer that the role of locality was not explained in a clear. Indeed, not every reader might be comfortable with iterative rounding and hence a detailed explanation of ``locality" might be required. Hence, we decided not to mention ``locality" in order to keep the exposition as simple as possible.
+	
+	\bigskip
+	
+	\item  \textbf{``Top of page 2: $M_1\triangle M_2$ is an edge set and not a graph, so what do you mean exactly by ``connected components" of $M_1\triangle M_2$? Are you taking as vertices only the endpoints
+of the edges in $M_1\triangle M_2$, or all the vertices of the original graph? (In the latter case,
+some connected components are isolated nodes: see point 8 below.)"}
+	
+	\smallskip
+	
+	We added a disclaimer: ``Note that $M_1\triangle M_2$ is an edge set, however in this paper we refer to nontrivial connected components of the graph $(V, M_1\triangle M_2)$ as connected components of $M_1\triangle M_2$.".
+	
+	\bigskip
+
+	\item  \textbf{``Page 2, line 13: it might be useful to say that the edges of $C$ alternates between $M_1$
+and $M_2$."}
+	
+	\smallskip
+	
+	Done.
+	
+	\bigskip
+	
+	\item \textbf{``Page 2, line 15: Since $v$ has been already fixed, while $a$ is being defined here, I think
+one should write $v =: a_2 \in mathcal{A}$ instead of $v := a_2\in \mathcal{A}$."}
+	
+		
+	\smallskip
+	
+	Done.
+	
+	\bigskip
+	
+	\item \textbf{``Figure 1: $a_1$ and $b_1$ do not match the notation used in the proof. Please either make
+the correspondence explicit in the caption (or in the proof), or use the same notation."}
+	
+	\smallskip
+	
+	Done.
+	
+	\bigskip
+	
+	\item \textbf{``Lemma 2.2: do you mean that $J_1$ and $J_2$ are the edge sets of the connected components? Otherwise notation $M_1\triangle J_1$ does not make sense."}
+	
+	\smallskip
+	
+	Here, they are edge sets. Please see Comment 2.
+	
+	\bigskip
+	
+	\item \textbf{``Page 2, line 39: does this follow from Lemma 2.1? If so, please mention this."}
+	
+	\smallskip
+	
+	It is due to the fact that if $a$ and $b$ both lie in $J_1$ then the neighbours of $a$ and $b$ in $M_1\triangle J_1$ are the respective neighbours of $a$ and $b$ in $M_2$. Thus the edge $ab$ is also blocking for $M_2$, contradicting stability of $M_2$.
+	
+	\bigskip
+	
+		
+	\item \textbf{``Page 2, line 40. This is related to point 2 above. If isolated nodes are not counted as
+connected components of $M_1\triangle M_2$, then the case of $a$ or $b$ being an isolated node of
+$M_1\triangle M_2$ is not covered by the cases ``$a \in V (J_1)$; $b \in V (J_2)$" and ``$a \in V (J_2)$; $b \in V (J_1)$". Otherwise, if isolated nodes are taken into account, then the definition of $J_1$ and $J_2$ does
+not clarify whether isolated nodes are components belonging to $J_1$ or $J_2$."}
+	
+	\smallskip
+	
+	Thank you for noticing that isolated nodes are not covered by the case distinction we made. Neither $a$ or $b$ can be an isolated node due to the reasoning similar to the answer to comment 7. We added a corresponding explanation.
+	
+	\bigskip
+
+	\item \textbf{``Figure 2: same observation as in point 5 above. Furthermore, to help the reader Isuggest to illustrate the first case of the proof instead of the second."}
+	
+	\smallskip
+	
+       We changed both the caption of the picture as well as the picture itself to illustrate the first case of the proof.
+	
+	\bigskip
+
+	\item \textbf{``10. Page 3, line 54/55: $\chi$ should be replaced with $x$ (twice)?"}
+	
+	\smallskip
+	
+	We changed the formula and explanation here to not use $\chi$.
+	
+	\bigskip
+	
+	\item \textbf{``11. Page 3, line 55/56: if I understand correctly, $a$ should be assumed to be in $V_x$."}
+	
+	\smallskip
+	
+	We do not need this assumption.
+	
+	\bigskip
+	
+	\item \textbf{``Same line: please insert a comma after ``$\varnothing$"."}
+	
+	\smallskip
+	
+	Done.
+	
+	\bigskip
+	
+	\item \textbf{``Page 3, last line: though its meaning is clear, notation $\delta^{\ge b}(a)$ is not defined in the paper (only $\delta^{> b}(a)$ is defined). The same applies to $\delta^{< b}(a)$ and $N_{\min}(b)$ (only $N_{\max}(b)$ is defined)."}
+	
+	\smallskip
+	
+	In the first draft of the paper, we have defined all this notation. However, since the notation is self-explanatory we decided not to introduce all the notation above.
+	
+	\bigskip
+	
+	\item \textbf{``Page 4, first line: are you assuming that $e\in E_x$? I think you are making a proof bycontradiction and thus implicitly assuming $e\in E_x$, but this is not stated explicitly."}
+	
+	\smallskip
+	
+	We changed the wording here.
+	
+	\bigskip
+	
+	
+	\item \textbf{``Page 4, line 8: I do not understand where the term ``$-1$" comes from."}
+	
+	\smallskip
+	
+	We changed the wording above, to make it clear that for every $b$ the edge $b N_{\max}(b)$ does not lie in $E_x$.
+	
+	\bigskip
+	
+	\item \textbf{``Page 4, line 18: please explain why."}
+	
+	\smallskip
+	
+	Done.
+	
+	\bigskip
+	
+		\item \textbf{``Page 4, line 19: $P(G')$ is an integral polytope by definition 2.3! Do you mean $Q(G')$? But in this case I cannot follow the rest of the proof, as you use Corollary 2.5, which applies really to $P$ and not $Q$. . ."}
+	
+	\smallskip
+	
+	By minimality of $G$, we have $P(G')=Q(G')$. We changed the wording here.
+	
+	\bigskip
+	
+	\item \textbf{``Last line before references: I think $P(G')$ should read $Q(G')$."}
+	
+	Please see Comment 17.
+
+	
+\end{enumerate}
+
+ Sincerely,
+
+\smallskip
+
+\qquad Jochen K\"{o}nemann
+
+\qquad  Kanstantsin Pashkovich
+
+\qquad  Justin Toth
+
+\end{document}
