@@ -315,7 +315,7 @@ The next Lemma is equivalent to Theorem 2.16 in \cite{roth1992two}. In the inter
   $M'_1$ does not satisfy~\eqref{eq:stability_def} for some edge
   $ab\in E$ with $a\in\mathcal{A}$ and $b\in\mathcal{B}$. For visualization of the proof see Figure~\ref{fig:sym_stable}.
 
-  Since $M_1$ and $M_2$ are stable, $a$ and $b$ lie in $V(J_1)\cup V(J_2)$. Otherwise $ab \not\in M_1, M_2$ and blocks one of $M_1, M_2$. Similarly, $a$ and $b$ cannot both lie in $V(J_1)$ or both in  $V(J_2)$. Suppose first that $a \in V(J_1)$ and $b \in V(J_2)$. In this case $M'_1(a)=M_2(a)$ and
+  Since $M_1$ and $M_2$ are stable, $a$ and $b$ lie in $V(J_1)\cup V(J_2)$. Otherwise $M'_1(a)=M_1(a)$,  $M'_1(b)=M_1(b)$ or  $M'_1(a)=M_2(a)$,  $M'_1(b)=M_2(b)$, and thus one of $M_1, M_2$ also violates~\eqref{eq:stability_def} for edge $ab$. Similarly, $a$ and $b$ cannot both lie in $V(J_1)$ or both in  $V(J_2)$. Suppose first that $a \in V(J_1)$ and $b \in V(J_2)$. In this case $M'_1(a)=M_2(a)$ and
   $M'_1(b) = M_1(b) >_b M_2(b)$. Thus $M_2$
   violates~\eqref{eq:stability_def} for edge $ab$. 
 
@@ -500,7 +500,7 @@ Now let us assume that $G$ is a graph with the minimum number of edges such that
 Case $x_{ab}=0$ for some $a\in \mathcal{A}$, $b\in\mathcal{B}$ and
 $e:=ab\in E$. In this case, let $P'$ and $x'$ be obtained from $Q(G)\cap\{x\in\R^E: x_{ab}=0\}$ and $x$ by dropping
 the coordinate corresponding to $ab$. Then,
-$x'$ is a vertex of the polytope $P'$, as otherwise $(x', 0) =x \in \R^{E\backslash\{e\}} \times \R$ is not a vertex of $Q(G)$.  Let $G'$ be the graph with
+$x'$ is a vertex of the polytope $P'$, as otherwise $x$ is not a vertex of $Q(G)$.  Let $G'$ be the graph with
 $V(G')=V$ and $E(G') = E \setminus \{e\}$. Then 
 $$P' = P(G') \cap \{x\in \R^{E(G')}: x(\delta^{>a}(b))+ x(\delta^{>b}(a))\geq1\}\,,$$
 since $P(G')=Q(G')$ by our minimality assumption. Define $H'$ to be the hyperplane $\{x\in \R^{E(G')}: x(\delta^{>a}(b))+ x(\delta^{>b}(a))=1\}$.  Then every vertex
@@ -508,7 +508,7 @@ of $P'$ is either a vertex of $P(G')$ or the intersection of an edge
 of $P(G')$ with the hyperplane $H'$. Since the vertices of $P(G')$ are
 integral, it remains to consider
 vertices of $P'$ at the intersection of $H'$ and an edge of $P(G')$. Such an
-edge would be defined by distinct stable matchings $M_1$ and $M_2$ and the vertex under consideration lies in the interior of the line segment between $M_1$ and $M_2$. If  $|M_1 \cap \big(\delta^{>a}(b)\cup\delta^{>b}(a)\big)|=1$ and $|M_2 \cap \big(\delta^{>a}(b)\cup\delta^{>b}(a)\big)|=1$ then $H$ does not separate $M_1$ and $M_2$, a contradiction. So we may assume that w.l.o.g. $|M_1 \cap \big(\delta^{>a}(b)\cup\delta^{>b}(a)\big)|=2$ and $|M_2 \cap \big(\delta^{>a}(b)\cup\delta^{>b}(a)\big)|=0$. Therefore, $M_1$ and $M_2$ satisfy \eqref{eq:edge} for the given edge $ab$. So
+edge would be defined by distinct stable matchings $M_1$ and $M_2$, where the vertex of $P'$ under consideration is not $\chi(M_1)$ nor $\chi(M_2)$. Note, that none of $\chi(M_1)$, $\chi(M_2)$ lies on the hyperplane $H'$, since $x'$ is the unique common point of $H'$ and the line segment between $\chi(M_1)$ and $\chi(M_2)$. Thus, $|M_1 \cap \big(\delta^{>a}(b)\cup\delta^{>b}(a)\big)|\neq 1$ and $|M_2 \cap \big(\delta^{>a}(b)\cup\delta^{>b}(a)\big)|\neq 1$. On the other hand, the line segment between $\chi(M_1)$ and $\chi(M_2)$ has a nonempty intersection with $H'$, so w.l.o.g. we may assume that $|M_1 \cap \big(\delta^{>a}(b)\cup\delta^{>b}(a)\big)|=2$ and $|M_2 \cap \big(\delta^{>a}(b)\cup\delta^{>b}(a)\big)|=0$. Therefore, $M_1$ and $M_2$ satisfy \eqref{eq:edge} for the given edge $ab$. So
 Corollary \ref{cor:edge} readily implies that $P(G')$ cannot
 have an edge connecting $M_1$ and $M_2$.
 
